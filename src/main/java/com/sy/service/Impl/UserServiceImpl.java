@@ -27,4 +27,18 @@ public class UserServiceImpl implements UserService{
 		}
 		return null;
 	}
+
+	@Override
+	public boolean findById(String userId){
+		UserDto userDto = userDao.findByUserId(userId);
+		if(userDto == null){
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public void registerByUserId(UserDto userDto){
+		userDao.registerByUserId(userDto);
+	}
 }

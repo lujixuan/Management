@@ -21,5 +21,8 @@ public interface UserDao {
 	 * @param password 密码
 	 * @return
 	 */
-	//UserDto registerByUsernameAndPassword(@Param("username")String username,@Param("password")String password);
+	void registerByUserId(UserDto userDto);
+
+	//UserDto registerByUserId(@Param("userId") String userId,@Param("userPwd") String userPwd,@Param("userName") String userName);
+	//UserDto registerByUserId(@Param("userId")String userId,@Param("userPwd")String userPwd,@Param("userName") String userName);
 }

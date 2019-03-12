@@ -27,6 +27,11 @@ public class UserController {
 	public String login(){
 		return "login";
 	}
+
+	@RequestMapping("/index")
+	public String index(){
+		return "index";
+	}
 	
 	//表单提交过来的路径
 	@RequestMapping("/checkLogin")
@@ -36,23 +41,36 @@ public class UserController {
 		//若有user则添加到model里并且跳转到成功页面
 		if(userDto != null){
 			model.addAttribute("user", userDto);
-			return "success";
+			return "personal";
 		}
 		return "fail";
 	}
-	
-	//测试超链接跳转到另一个页面是否可以取到session值
+
 	@RequestMapping("/anotherpage")
 	public String hrefpage(){
-		
 		return "anotherpage";
 	}
-	
-	//注销方法
+
 	@RequestMapping("/outLogin")
 	public String outLogin(HttpSession session){
 		//通过session.invalidata()方法来注销当前的session
 		session.invalidate();
 		return "login";
+	}
+
+	@RequestMapping("/registerPage")
+	public String registerPage(){
+		return "register";
+	}
+
+	@RequestMapping("/register")
+	public String register(UserDto userDto, Model model){
+		UserDto userDto1 = userDto;
+		if(userServivce.findById(userDto.getUserId())){
+			userServivce.registerByUserId(userDto);
+			model.addAttribute("user", userDto);
+			return "personal";
+		}
+		return "fail";
 	}
 }
