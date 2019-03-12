@@ -10,13 +10,13 @@
 <body>
 
 	<div>
-		<strong> welcome,${sessionScope.user.username}! </strong>
+		<strong> welcome,${sessionScope.user.userName}</strong>
 	</div>
 	this is success page!
 
-	<a href="/userLogin/user/anotherpage">点我跳到另一个页面</a>
+	<a href="anotherpage">点我跳到另一个页面</a>
 
-	<form action="/userLogin/user/outLogin">
+	<form action="outLogin">
 		<table>
 			<tr>
 				<td><input type="submit" value="退出登录"></td>

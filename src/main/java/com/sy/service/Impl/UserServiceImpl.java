@@ -1,10 +1,10 @@
 package com.sy.service.Impl;
 
+import com.sy.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sy.dao.UserDao;
-import com.sy.entity.User;
 import com.sy.service.UserService;
 
 @Service
@@ -17,12 +17,13 @@ public class UserServiceImpl implements UserService{
 	 * 检验用户登录业务
 	 * 
 	 */
-	public User checkLogin(String username, String password) {
+	@Override
+	public UserDto checkLogin(String userId, String userPwd) {
 		
-		User user = userDao.findByUsername(username);
-		if(user != null && user.getPassword().equals(password)){
+		UserDto userDto = userDao.findByUserId(userId);
+		if(userDto != null && userDto.getUserPwd().equals(userPwd)){
 		
-			return user;
+			return userDto;
 		}
 		return null;
 	}

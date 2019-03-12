@@ -9,9 +9,9 @@
 <body>
 
 	<div>
-		<strong> ${sessionScope.user.username}!!!!! </strong>
+		<strong>${sessionScope.user.userName}</strong>
 	</div>
-	<form action="/userLogin/user/outLogin">
+	<form action="outLogin">
 		<table>
 			<tr>
 				<td><input type="submit" value="退出登录" ></td>

@@ -2,18 +2,17 @@ package com.sy.dao;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.sy.entity.User;
+import com.sy.dto.UserDto;
 
 public interface UserDao {
 	
 	
 	/**
 	 * 查找用户名和密码
-	 * @param username 登录用户名 
-	 * @param password 密码
+	 * @param userId 登录用户名
 	 * @return
 	 */
-	User findByUsername(String username);
+	UserDto findByUserId(String userId);
 
 	
 	/**
@@ -22,6 +21,5 @@ public interface UserDao {
 	 * @param password 密码
 	 * @return
 	 */
-	User registerByUsernameAndPassword(@Param("username")String username,
-										@Param("password")String password);
+	//UserDto registerByUsernameAndPassword(@Param("username")String username,@Param("password")String password);
 }

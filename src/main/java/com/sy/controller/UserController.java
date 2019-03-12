@@ -2,14 +2,13 @@ package com.sy.controller;
 
 import javax.servlet.http.HttpSession;
 
+import com.sy.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.sy.entity.User;
 import com.sy.service.UserService;
 
 @Controller
@@ -31,12 +30,12 @@ public class UserController {
 	
 	//表单提交过来的路径
 	@RequestMapping("/checkLogin")
-	public String checkLogin(User user,Model model){
+	public String checkLogin(UserDto userDto, Model model){
 		//调用service方法
-		user = userServivce.checkLogin(user.getUsername(), user.getPassword());
+		userDto = userServivce.checkLogin(userDto.getUserId(), userDto.getUserPwd());
 		//若有user则添加到model里并且跳转到成功页面
-		if(user != null){
-			model.addAttribute("user",user);
+		if(userDto != null){
+			model.addAttribute("user", userDto);
 			return "success";
 		}
 		return "fail";

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="SSM-UerLogin:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>SSM-UerLogin</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="userLogin.war">
+      <element id="artifact" artifact-name="SSM-UerLogin:war exploded" />
+    </root>
+  </artifact>
+</component>
