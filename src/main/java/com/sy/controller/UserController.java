@@ -1,5 +1,6 @@
 package com.sy.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.sy.dto.UserDto;
@@ -35,7 +36,7 @@ public class UserController {
 	
 	//表单提交过来的路径
 	@RequestMapping("/checkLogin")
-	public String checkLogin(UserDto userDto, Model model){
+	public String checkLogin(UserDto userDto, Model model, HttpServletRequest request){
 		//调用service方法
 		userDto = userServivce.checkLogin(userDto.getUserId(), userDto.getUserPwd());
 		//若有user则添加到model里并且跳转到成功页面
@@ -43,7 +44,8 @@ public class UserController {
 			model.addAttribute("user", userDto);
 			return "personal";
 		}
-		return "fail";
+		request.setAttribute("error_username","用户名不存在！");
+		return "login";
 	}
 
 	@RequestMapping("/anotherpage")

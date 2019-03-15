@@ -32,7 +32,7 @@
 				<div class="translucent">
 				<div class="col-md-12 column">
 					<h3>请登录：</h3>
-					<form action="checkLogin" method="post">
+					<form action="checkLogin" method="get">
 						<div class="form-group">
 							<input type="text" class="form-control" id="userId" name="userId" placeholder="账户"/>
 						</div>
