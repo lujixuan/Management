@@ -47,9 +47,9 @@
                         <div class="col-md-3 column">
                             <div class="form-horizontal" role="form">
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label">书名:</label>
+                                    <label class="col-sm-4 control-label">主要语言:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="userId" name="userId" placeholder="账户"/>
+                                        <input type="text" class="form-control" id="userId" name="userId" placeholder=""/>
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                         <div class="col-md-3 column">
                             <div class="form-horizontal" role="form">
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label">大小:</label>
+                                    <label class="col-sm-4 control-label">状态:</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="userId" name="userId" />
                                     </div>
@@ -72,7 +72,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label">参与人数:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="userId" name="userId" placeholder="账户"/>
+                                        <input type="text" class="form-control" id="userId" name="userId" />
                                     </div>
                                 </div>
                             </div>
@@ -82,7 +82,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label">类型:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="userId" name="userId" placeholder="账户"/>
+                                        <input type="text" class="form-control" id="userId" name="userId" />
                                     </div>
                                 </div>
                             </div>
@@ -92,11 +92,11 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">创建时间:</label>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" id="userId" name="userId" placeholder="账户"/>
+                                        <input type="text" class="form-control" id="userId" name="userId" />
                                     </div>
                                     <label class="col-sm-1 control-label">~</label>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" id="userId" name="userId" placeholder="账户"/>
+                                        <input type="text" class="form-control" id="userId" name="userId" />
                                     </div>
                                 </div>
                             </div>
