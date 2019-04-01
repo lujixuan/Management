@@ -33,6 +33,26 @@ public class UserController {
 	public String index(){
 		return "index";
 	}
+
+	@RequestMapping("/SearchProject")
+	public String searchProject(){
+		return "SearchProject";
+	}
+
+	@RequestMapping("/CreatProject")
+	public String creatProject(){
+		return "CreatProject";
+	}
+
+	@RequestMapping("/MyProject")
+	public String myProject(){
+		return "MyProject";
+	}
+
+	@RequestMapping("/personal")
+	public String personal(){
+		return "personal";
+	}
 	
 	//表单提交过来的路径
 	@RequestMapping("/checkLogin")

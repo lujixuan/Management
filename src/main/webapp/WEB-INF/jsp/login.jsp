@@ -46,7 +46,7 @@
 						</div>
 					<div class="row clearfix">
 						<div class="col-md-6 column">
-							<input type="submit" class="btn btn-default  btn-primary  btn-block" value="登录"></input>
+							<input type="submit" class="btn btn-default  btn-primary  btn-block" value="登录" />
 						</div>
 						<div class="col-md-6 column">
 							<a type="button" class="btn  btn-primary btn-block btn-danger" href="registerPage">注册</a>
