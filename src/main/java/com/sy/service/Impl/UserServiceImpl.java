@@ -15,7 +15,6 @@ public class UserServiceImpl implements UserService{
 	
 	/* 
 	 * 检验用户登录业务
-	 * 
 	 */
 	@Override
 	public UserDto checkLogin(String userId, String userPwd) {

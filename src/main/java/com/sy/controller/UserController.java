@@ -14,7 +14,6 @@ import com.sy.service.UserService;
 
 @Controller
 @RequestMapping("/user")
-
 //这里用了@SessionAttributes，可以直接把model中的user(也就key)放入其中
 //这样保证了session中存在user这个对象
 @SessionAttributes("user")
@@ -53,13 +52,17 @@ public class UserController {
 	public String personal(){
 		return "personal";
 	}
-	
-	//表单提交过来的路径
+
+    /**
+     * 登录
+     * @param userDto
+     * @param model
+     * @param request
+     * @return
+     */
 	@RequestMapping("/checkLogin")
 	public String checkLogin(UserDto userDto, Model model, HttpServletRequest request){
-		//调用service方法
 		userDto = userServivce.checkLogin(userDto.getUserId(), userDto.getUserPwd());
-		//若有user则添加到model里并且跳转到成功页面
 		if(userDto != null){
 			model.addAttribute("user", userDto);
 			return "personal";
