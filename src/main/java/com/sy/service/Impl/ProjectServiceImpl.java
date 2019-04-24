@@ -1,36 +1,24 @@
 package com.sy.service.Impl;
 
+import com.sy.dao.ProjectDao;
 import com.sy.dao.UserDao;
+import com.sy.dto.ProjectDto;
 import com.sy.dto.UserDto;
+import com.sy.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
-public class ProjectServiceImpl {
+import java.util.List;
+
+@Service
+public class ProjectServiceImpl implements ProjectService {
 
     @Autowired
-    private UserDao userDao;
+    private ProjectDao projectDao;
 
-    /*
-     * 检验用户登录业务
-     */
-    public UserDto checkLogin(String userId, String userPwd) {
-
-        UserDto userDto = userDao.findByUserId(userId);
-        if(userDto != null && userDto.getUserPwd().equals(userPwd)){
-
-            return userDto;
-        }
-        return null;
-    }
-
-    public boolean findById(String userId){
-        UserDto userDto = userDao.findByUserId(userId);
-        if(userDto == null){
-            return true;
-        }
-        return false;
-    }
-
-    public void registerByUserId(UserDto userDto){
-        userDao.registerByUserId(userDto);
+    @Override
+    public List<ProjectDto> searchProject(ProjectDto projectDto){
+        return projectDao.listProject(projectDto);
     }
 }

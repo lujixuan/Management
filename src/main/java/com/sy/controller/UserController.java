@@ -14,8 +14,6 @@ import com.sy.service.UserService;
 
 @Controller
 @RequestMapping("/user")
-//这里用了@SessionAttributes，可以直接把model中的user(也就key)放入其中
-//这样保证了session中存在user这个对象
 @SessionAttributes("user")
 public class UserController {
 	
@@ -33,19 +31,19 @@ public class UserController {
 		return "index";
 	}
 
-	@RequestMapping("/SearchProject")
+	@RequestMapping("/SearchProjectPage")
 	public String searchProject(){
-		return "SearchProject";
+		return "/project/searchProject";
 	}
 
 	@RequestMapping("/CreatProject")
 	public String creatProject(){
-		return "CreatProject";
+		return "project/creatProject";
 	}
 
 	@RequestMapping("/MyProject")
 	public String myProject(){
-		return "MyProject";
+		return "project/myProject";
 	}
 
 	@RequestMapping("/personal")

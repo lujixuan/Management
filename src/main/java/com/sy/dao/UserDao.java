@@ -17,8 +17,6 @@ public interface UserDao {
 	
 	/**
 	 * 注册用户和密码
-	 * @param username 用户名
-	 * @param password 密码
 	 * @return
 	 */
 	void registerByUserId(UserDto userDto);

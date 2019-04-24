@@ -5,24 +5,16 @@
   Time: 11:19
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>创建项目</title>
-</head>
-<body>
-<jsp:include page="Head.jsp" />
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<jsp:include page="../Head.jsp" />
+<script type="text/javascript">
+    // 更改title
+    document.getElementsByTagName("title")[0].innerText = '创建项目';
+</script>
 
 <div class="container">
 <div class="row clearfix">
     <div class="col-md-12 column">
-        <br />
-        <br />
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="row clearfix">
@@ -166,5 +158,4 @@
     </div>
 </div>
 </div>
-</body>
-</html>
+<jsp:include page="../Footer.jsp"/>

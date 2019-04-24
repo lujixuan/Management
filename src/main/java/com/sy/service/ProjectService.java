@@ -1,15 +1,10 @@
 package com.sy.service;
 
-import com.sy.dto.UserDto;
+import com.sy.dto.ProjectDto;
+import org.springframework.ui.Model;
+
+import java.util.List;
 
 public interface ProjectService {
-
-
-
-    //检验用户登录
-    UserDto checkLogin(String userId, String userPwd);
-
-    boolean findById(String userId);
-
-    void registerByUserId(UserDto userDto);
+    List<ProjectDto> searchProject(ProjectDto projectDto);
 }
