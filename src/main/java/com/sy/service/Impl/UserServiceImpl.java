@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.sy.dao.UserDao;
 import com.sy.service.UserService;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -40,5 +42,23 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void registerByUserId(UserDto userDto){
 		userDao.registerByUserId(userDto);
+	}
+
+	/**
+	 * 根据id查找用户
+	 */
+	@Override
+	public UserDto findUserById(int id) {
+		UserDto user = userDao.findUserById(id);
+		return user;
+	}
+
+	/**
+	 * 查询所有用户
+	 */
+	@Override
+	public List<UserDto> findAll() {
+		List<UserDto> allUser = userDao.findAll();
+		return allUser;
 	}
 }
