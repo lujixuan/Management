@@ -1,5 +1,7 @@
 package com.sy.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.sy.dto.ProjectDto;
 import com.sy.dto.UserDto;
 import com.sy.service.ProjectService;
@@ -7,10 +9,7 @@ import com.sy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -31,8 +30,13 @@ public class ProjectController {
      * @return
      */
     @RequestMapping("/searchProject")
-    public String searchProject(ProjectDto projectDto, Model model){
-        model.addAttribute("project",projectServivce.searchProject(projectDto));
+    public String searchProject(ProjectDto projectDto,@RequestParam(value="pn",defaultValue="1")Integer pn, Model model){
+        //从第一条开始 每页查询五条数据
+        PageHelper.startPage(pn, 5);
+        List<ProjectDto> projects = projectServivce.searchProject(projectDto);
+        //将用户信息放入PageInfo对象里
+        PageInfo page = new PageInfo(projects,5);
+        model.addAttribute("pageInfo", page);
 
         return "project/searchProject";
     }

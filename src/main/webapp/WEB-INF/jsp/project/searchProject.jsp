@@ -90,7 +90,7 @@
         </div>
     </div>
 
-    <c:forEach items="${sessionScope.project}" var="p">
+    <c:forEach items="${pageInfo.list}" var="p">
         <div class="row clearfix">
             <div class="col-md-12 column">
                 <div class="panel panel-default"  style="background: #f7f7f7">

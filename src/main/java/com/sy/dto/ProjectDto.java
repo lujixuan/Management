@@ -3,7 +3,7 @@ package com.sy.dto;
 import java.util.Date;
 
 public class ProjectDto {
-    private int projectID; // 项目id
+    private int projectId; // 项目id
     private String projectName; //项目名
     private String projectCode; //项目代号
     private String projectDate; // 项目创建日期
@@ -11,13 +11,6 @@ public class ProjectDto {
     private String projectDescribe; // 项目简介
     private String userId; // 创建人
 
-    public int getProjectID() {
-        return projectID;
-    }
-
-    public void setProjectID(int projectID) {
-        this.projectID = projectID;
-    }
 
     public String getProjectName() {
         return projectName;
@@ -65,5 +58,13 @@ public class ProjectDto {
 
     public void setProjectToDate(String projectToDate) {
         this.projectToDate = projectToDate;
+    }
+
+    public int getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
     }
 }

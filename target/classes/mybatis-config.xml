@@ -13,6 +13,10 @@
 		<setting name="useColumnLabel" value="true"/>
 		<!-- 开启驼峰命名转换：Table(create_time) -> Entity(createTime) -->
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
-	</settings>  
-  
+	</settings>
+
+	<!-- mybatis分页插件 -->
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageHelper"></plugin>
+	</plugins>
 </configuration>
