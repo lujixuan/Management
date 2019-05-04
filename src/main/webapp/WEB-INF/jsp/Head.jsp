@@ -12,6 +12,33 @@
     <link href="/assets/css/bootstrap.css" rel="stylesheet">
     <script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
     <link href="/css/fore/style.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="/js/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/js/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="/js/vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/js/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/js/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="/js/vendor/raphael/raphael.min.js"></script>
+    <script src="/js/vendor/morrisjs/morris.min.js"></script>
+    <script src="/js/data/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/js/dist/js/sb-admin-2.js"></script>
+
+    <!-- 引用wangEditor js -->
+    <script type="text/javascript" src="/js/wangEditor/wangEditor.js"></script>
+
     <%-- 引入日期选择控件 --%>
     <script type="text/JavaScript" src="/My97DatePicker/WdatePicker.js"></script>
 
@@ -62,11 +89,21 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li >
-                            <a href="personal">主页</a>
+                            <a href="personal">总览</a>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">项目<strong class="caret"></strong></a>
                             <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/user/personal">全部项目</a>
+                                </li>
+                                <li>
+                                    <a href="/user/personal">网上书店项目</a>
+                                </li>
+                                <li>
+                                    <a href="/user/personal">白度网盘项目</a>
+                                </li>
+                                <li class="divider">
                                 <li>
                                     <a href="SearchProjectPage">搜索项目</a>
                                 </li>
@@ -76,7 +113,7 @@
                                 <li class="divider">
                                 </li>
                                 <li>
-                                    <a href="MyProject">我的项目</a>
+                                    <a href="MyProject?loginUserId=${sessionScope.user.userId}">我的项目</a>
                                 </li>
                             </ul>
                         </li>

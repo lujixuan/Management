@@ -3,13 +3,15 @@ package com.sy.dto;
 import java.util.Date;
 
 public class ProjectDto {
-    private int projectId; // 项目id
+    private Integer projectId; // 项目id
     private String projectName; //项目名
     private String projectCode; //项目代号
     private String projectDate; // 项目创建日期
     private String projectToDate; // 查询时使用：结束时间范围
     private String projectDescribe; // 项目简介
     private String userId; // 创建人
+    private String userName; // 创建人姓名
+    private String loginUserId; // 当前用户
 
 
     public String getProjectName() {
@@ -60,11 +62,27 @@ public class ProjectDto {
         this.projectToDate = projectToDate;
     }
 
-    public int getProjectId() {
+    public String getLoginUserId() {
+        return loginUserId;
+    }
+
+    public void setLoginUserId(String loginUserId) {
+        this.loginUserId = loginUserId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public Integer getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(int projectId) {
+    public void setProjectId(Integer projectId) {
         this.projectId = projectId;
     }
 }

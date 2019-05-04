@@ -41,6 +41,7 @@
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:4.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.28" />
         </element>
       </element>
       <element id="directory" name="META-INF">

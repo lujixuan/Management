@@ -3,6 +3,7 @@ package com.sy.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.alibaba.fastjson.JSON;
 import com.sy.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,19 +32,9 @@ public class UserController {
 		return "index";
 	}
 
-	@RequestMapping("/SearchProjectPage")
-	public String searchProject(){
-		return "/project/searchProject";
-	}
-
-	@RequestMapping("/CreatProject")
-	public String creatProject(){
-		return "project/creatProject";
-	}
-
-	@RequestMapping("/MyProject")
-	public String myProject(){
-		return "project/myProject";
+	@RequestMapping("/about")
+	public String about(){
+		return "about";
 	}
 
 	@RequestMapping("/personal")
@@ -63,6 +54,7 @@ public class UserController {
 		userDto = userServivce.checkLogin(userDto.getUserId(), userDto.getUserPwd());
 		if(userDto != null){
 			model.addAttribute("user", userDto);
+			model.addAttribute("userJson", JSON.toJSON(userDto));
 			return "personal";
 		}
 		request.setAttribute("error_username","用户名不存在！");
@@ -94,6 +86,6 @@ public class UserController {
 			model.addAttribute("user", userDto);
 			return "personal";
 		}
-		return "fail";
+		return "about";
 	}
 }

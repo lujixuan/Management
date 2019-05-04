@@ -45,14 +45,22 @@
                         <div class="col-md-3 column">
                             <div class="form-horizontal" role="form">
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label">创建人:</label>
+                                    <label class="col-sm-4 control-label">创建人姓名:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="userId" name="userId"/>
+                                        <input type="text" class="form-control" id="userName" name="userName"/>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3 column">
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">创建人账户:</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="userId" name="userId"/>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -76,7 +84,7 @@
                         <div class="col-md-3 column">
                         </div>
                         <div class="col-md-2 column">
-                            <input type="submit" class="btn btn-default  btn-primary  btn-block" value="搜索" />
+                            <button type="submit" class="btn btn-default  btn-primary  btn-block " value="搜索" style="text-shadow: black 5px 3px 3px;">搜索&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span></button>
                         </div>
                     </div>
                 </div>
@@ -93,29 +101,59 @@
     <c:forEach items="${pageInfo.list}" var="p">
         <div class="row clearfix">
             <div class="col-md-12 column">
-                <div class="panel panel-default"  style="background: #f7f7f7">
+                <div class="panel panel-default"  >
                     <div class="panel-body">
-                        <div class="page-header">
-                            <h1>
-                                ${p.projectName}<small>项目</small>
-                            </h1>
+
+                        <div class="row clearfix">
+                            <div class="col-md-10 column">
+                                <h1>
+                                    ${p.projectName}<small>项目</small>
+                                </h1>
+                            </div>
+
                         </div>
                         <div class="row clearfix">
-                            <div class="col-md-12 column">
-                                <span class="label label-default">${p.projectCode}</span>
-                                <span class="label label-default">购物</span>
-                                <span class="label label-default">课设</span>
+                            <div class="col-md-9 column">
+                                <span class="label label-primary">${p.projectCode}</span>
+                                <span class="label label-primary">购物</span>
+                                <span class="label label-primary">课设</span>
                             </div>
                         </div>
-                        <h3>
-                            简介：
-                        </h3>
-                        <p>
-                            ${p.projectDescribe}
-                        </p>
-                        <p>
-                            <a class="btn" href="/project?projectId=${p.projectId}">查看更多 »</a>
-                        </p>
+                        <div class="row clearfix">
+                            <div class="col-md-1 column">
+                                <h5>
+                                    创建人:
+                                </h5>
+                                <h5>
+                                    创建时间:
+                                </h5>
+                                <h5>
+                                    项目简介:
+                                </h5>
+                            </div>
+                            <div class="col-md-9 column" style="margin:0;padding:0;display: inline-block;vertical-align: middle;">
+                                <h5 >
+                                    ${p.userName}
+                                </h5>
+                                <h5 >
+                                    ${p.projectDate}
+                                </h5>
+                                <h5 >
+                                    ${p.projectDescribe}
+                                </h5>
+                            </div>
+                            <div class="col-md-2 column" >
+                                <br/>
+                                <br/>
+                                <br/>
+                                <p>
+                                    <a class="btn btn btn-outline btn-info btn-block" href="/user/projectInfo?projectId=${p.projectId}">
+                                        查看更多&nbsp;<span class="glyphicon glyphicon-chevron-right"></span>
+                                        <%--&nbsp;&nbsp;&nbsp;»--%>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -150,7 +188,6 @@
 
 
 
-    <hr />
     <div class="row clearfix">
         <div class="col-md-12 column">
             <ul class="pagination">

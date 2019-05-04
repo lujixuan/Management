@@ -11,11 +11,15 @@
 			p.projectCode,
 			p.projectDate,
 			p.projectDescribe,
-			pi.projectInfoUserId userId
+			pi.projectInfoUserId userId,
+			u.userName
 		from projects p
 			join projectInfos pi on p.projectId=pi.projectInfoProjectId
-		and pi.projectType='创建人'
+			join users u on pi.projectInfoUserId = u.userId
 		<where>
+			<if test="loginUserId != null and loginUserId != ''">
+				AND pi.projectInfoUserId = #{loginUserId}
+			</if>
 			<if test="projectName != null and projectName != ''">
 				AND p.projectName = #{projectName}
 			</if>
@@ -25,10 +29,33 @@
 			<if test="userId != null and userId != ''">
 				AND pi.projectInfoUserId = #{userId}
 			</if>
+			<if test="userName != null and userName != ''">
+				AND u.userName = #{userName}
+			</if>
 			<if test="projectDate != null and projectDate != '' and projectToDate != null and projectToDate != ''">
 				AND p.projectDate between #{projectDate} and #{projectToDate}
 			</if>
 		</where>
+		AND pi.projectInfoType='创建人'
+	</select>
+
+	<select id="searchProjectDetail" resultType="com.sy.dto.ProjectDto">
+		select  p.projectId,
+		p.projectName,
+		p.projectCode,
+		p.projectDate,
+		p.projectDescribe,
+		pi.projectInfoUserId userId,
+		u.userName
+		from projects p
+		join projectInfos pi on p.projectId=pi.projectInfoProjectId
+		join users u on pi.projectInfoUserId = u.userId
+		<where>
+			<if test="projectId != null and projectId != ''">
+				AND p.projectId = #{projectId}
+			</if>
+		</where>
+		AND pi.projectInfoType='创建人'
 	</select>
 
     <!--&lt;!&ndash; 增加用户名和密码进行注册  &ndash;&gt;-->

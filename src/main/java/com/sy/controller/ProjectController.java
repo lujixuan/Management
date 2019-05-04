@@ -6,6 +6,7 @@ import com.sy.dto.ProjectDto;
 import com.sy.dto.UserDto;
 import com.sy.service.ProjectService;
 import com.sy.service.UserService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,5 +42,34 @@ public class ProjectController {
         return "project/searchProject";
     }
 
+    @RequestMapping("/SearchProjectPage")
+    public String searchProject(){
+        return "/project/searchProject";
+    }
+
+    @RequestMapping("/CreatProject")
+    public String creatProject(){
+        return "project/creatProject";
+    }
+
+    @RequestMapping("/MyProject")
+    public String myProject(Model model, String loginUserId, @RequestParam(value="pn",defaultValue="1")Integer pn){
+        PageHelper.startPage(pn, 5);
+        ProjectDto projectDto = new ProjectDto();
+        projectDto.setLoginUserId(loginUserId);
+        List<ProjectDto> projects = projectServivce.searchProject(projectDto);
+        PageInfo page = new PageInfo(projects,5);
+        model.addAttribute("pageInfo", page);
+        return "project/myProject";
+    }
+
+    @RequestMapping("/projectInfo")
+    public String projectInfo(Model model, Integer projectId){
+        ProjectDto projectDto = new ProjectDto();
+        projectDto.setProjectId(projectId);
+        ProjectDto projectInfo = projectServivce.searchProjectDetail(projectId);
+        model.addAttribute("projectInfo", projectInfo);
+        return "project/projectDetail";
+    }
 
 }

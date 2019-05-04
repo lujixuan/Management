@@ -21,4 +21,9 @@ public class ProjectServiceImpl implements ProjectService {
     public List<ProjectDto> searchProject(ProjectDto projectDto){
         return projectDao.listProject(projectDto);
     }
+
+    @Override
+    public ProjectDto searchProjectDetail(Integer projectId){
+        return projectDao.searchProjectDetail(projectId);
+    }
 }

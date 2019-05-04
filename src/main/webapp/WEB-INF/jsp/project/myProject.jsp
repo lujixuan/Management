@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: ljx
@@ -13,99 +14,68 @@
 </script>
 
 <div class="container">
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <div class="panel panel-default">
-                <div class="panel-body">
-            <div class="page-header">
-                <h1>
-                    网上书店 <small>这是一个Java语言编写的网上书店项目。</small>
-                </h1>
-            </div>
-            <div class="row clearfix">
-                <div class="col-md-12 column">
-                    <span class="label label-default">Java</span>
-                    <span class="label label-default">购物</span>
-                    <span class="label label-default">课设</span>
-                </div>
-            </div>
-            <h3>
-                简介：
-            </h3>
-            <p>
-                这是一个Java项目，可以网上购物等，很好的项目！
-                欢迎加入
-            </p>
-            <p>
-                <a class="btn" href="#">查看更多 »</a>
-            </p>
-                </div>
-            </div>
-        </div>
-        <hr />
-    </div>
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="page-header">
-                        <h1>
-                            购物网站 <small>这是一个C#语言编写的网上购物项目。</small>
-                        </h1>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-12 column">
-                            <span class="label label-default">C#</span>
-                            <span class="label label-default">购物</span>
-                            <span class="label label-default">课设</span>
+    <c:forEach items="${pageInfo.list}" var="p">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="panel panel-default"  >
+                    <div class="panel-body">
+
+                        <div class="row clearfix">
+                            <div class="col-md-10 column">
+                                <h1>
+                                        ${p.projectName}<small>项目</small>
+                                </h1>
+                            </div>
+
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-md-9 column">
+                                <span class="label label-primary">${p.projectCode}</span>
+                                <span class="label label-primary">购物</span>
+                                <span class="label label-primary">课设</span>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-md-1 column">
+                                <h5>
+                                    创建人:
+                                </h5>
+                                <h5>
+                                    创建时间:
+                                </h5>
+                                <h5>
+                                    项目简介:
+                                </h5>
+                            </div>
+                            <div class="col-md-9 column" style="margin:0;padding:0;display: inline-block;vertical-align: middle;">
+                                <h5 >
+                                        ${p.userId}
+                                </h5>
+                                <h5 >
+                                        ${p.projectDate}
+                                </h5>
+                                <h5 >
+                                        ${p.projectDescribe}
+                                </h5>
+                            </div>
+                            <div class="col-md-2 column" >
+                                <br/>
+                                <br/>
+                                <br/>
+                                <p>
+                                    <a class="btn btn btn-outline btn-info btn-block" href="/user/projectInfo?projectId=${p.projectId}">
+                                        查看更多&nbsp;<span class="glyphicon glyphicon-chevron-right"></span>
+                                            <%--&nbsp;&nbsp;&nbsp;»--%>
+                                    </a>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <h3>
-                        简介：
-                    </h3>
-                    <p>
-                        这是一个C#项目，可以网上购物等，很好的项目！
-                        欢迎加入
-                    </p>
-                    <p>
-                        <a class="btn" href="#">查看更多 »</a>
-                    </p>
                 </div>
             </div>
+            <hr />
         </div>
-        <hr />
-    </div>
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="page-header">
-                        <h1>
-                            图书馆管理系统 <small>这是一个Python语言编写的项目。</small>
-                        </h1>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-12 column">
-                            <span class="label label-default">Python</span>
-                            <span class="label label-success">管理</span>
-                            <span class="label label-info">课设</span>
-                        </div>
-                    </div>
-                    <h3>
-                        简介：
-                    </h3>
-                    <p>
-                        这是一个Python项目，可以网上购物等，很好的项目！
-                        欢迎加入
-                    </p>
-                    <p>
-                        <a class="btn" href="#">查看更多 »</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <hr />
-    </div>
+    </c:forEach>
     <div class="row clearfix">
         <div class="col-md-12 column">
             <ul class="pagination">

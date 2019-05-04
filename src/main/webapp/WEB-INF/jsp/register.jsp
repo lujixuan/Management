@@ -14,7 +14,7 @@
             padding: 30px 50px;
             width: 450px;
             background: rgba(255,255,255,0.7);
-            height: 350px;
+            height: 370px;
             margin: auto;
             position: absolute;
             top: 0;
