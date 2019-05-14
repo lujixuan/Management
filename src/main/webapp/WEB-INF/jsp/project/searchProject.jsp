@@ -92,11 +92,6 @@
             </form>
         </div>
     </div>
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-
-        </div>
-    </div>
 
     <c:forEach items="${pageInfo.list}" var="p">
         <div class="row clearfix">
@@ -107,18 +102,18 @@
                         <div class="row clearfix">
                             <div class="col-md-10 column">
                                 <h1>
-                                    ${p.projectName}<small>项目</small>
+                                    ${p.projectName}<small>&nbsp;项目</small>
                                 </h1>
                             </div>
 
                         </div>
-                        <div class="row clearfix">
-                            <div class="col-md-9 column">
-                                <span class="label label-primary">${p.projectCode}</span>
-                                <span class="label label-primary">购物</span>
-                                <span class="label label-primary">课设</span>
-                            </div>
-                        </div>
+                        <%--<div class="row clearfix">--%>
+                            <%--<div class="col-md-9 column">--%>
+                                <%--<span class="label label-primary">${p.projectCode}</span>--%>
+                                <%--<span class="label label-primary">Java</span>--%>
+                                <%--<span class="label label-primary">develop</span>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
                         <div class="row clearfix">
                             <div class="col-md-1 column">
                                 <h5>
@@ -161,32 +156,6 @@
         </div>
     </c:forEach>
 
-        <%--<div class="product">
-            <div class="product-iWrap">
-                <div class="productImg-wrap">
-                    <a class="productImg" href="/showProduct?product_id=${p.id}">
-                        <img src="/img/product/${p.id}/1.jpg">
-                    </a>
-                </div>
-                <div style="clear: both;"></div>
-                <p class="productPrice">
-                    <em title="${p.price}">
-                        <b>￥</b>${p.price}
-                    </em>
-                </p>
-                <div style="clear: both;"></div>
-                <p class="productTitle">
-                    <a href="/showProduct?product_id=${p.id}">${p.name}</a>
-                </p>
-                <p class="productStatus">
-                    <span>销量<em>${p.sale}</em></span>
-                    <span>评价<a href="#nowhere">${p.reviewCount}</a></span>
-                    <span class="ww-light"><a></a></span>
-                </p>
-            </div>
-        </div>--%>
-
-
 
     <div class="row clearfix">
         <div class="col-md-12 column">
@@ -217,3 +186,31 @@
     </div>
 </div>
 <jsp:include page="../Footer.jsp"/>
+
+
+
+
+
+
+
+
+
+<c:forEach items="${pageInfo.list}" var="p">
+    ……
+    <h1>
+            ${p.projectName}<small>&nbsp;项目</small>
+    </h1>
+    ……
+    <div class="col-md-9 column" style="margin:0;padding:0;display: inline-block;vertical-align: middle;">
+        <h5 >
+            创建人: ${p.userName}
+        </h5>
+        <h5 >
+            创建时间:   ${p.projectDate}
+        </h5>
+        <h5 >
+            项目简介:   ${p.projectDescribe}
+        </h5>
+    </div>
+    ……
+</c:forEach>

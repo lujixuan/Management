@@ -8,39 +8,39 @@
     <%--<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>--%>
     <%--<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
     <%-- 引入本地JQ和Bootstrap --%>
-    <script src="/js/jquery/2.0.0/jquery.min.js"></script>
-    <link href="/assets/css/bootstrap.css" rel="stylesheet">
-    <script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
-    <link href="/css/fore/style.css" rel="stylesheet">
+    <script src="/frame/js/jquery/2.0.0/jquery.min.js"></script>
+    <link href="/frame/assets/css/bootstrap.css" rel="stylesheet">
+    <script src="/frame/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <link href="/frame/css/fore/style.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="/js/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="/frame/js/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="/js/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/frame/js/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="/js/vendor/morrisjs/morris.css" rel="stylesheet">
+    <link href="/frame/js/vendor/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="/js/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/frame/js/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="/js/vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="/frame/js/vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="/js/vendor/raphael/raphael.min.js"></script>
-    <script src="/js/vendor/morrisjs/morris.min.js"></script>
-    <script src="/js/data/morris-data.js"></script>
+    <script src="/frame/js/vendor/raphael/raphael.min.js"></script>
+    <script src="/frame/js/vendor/morrisjs/morris.min.js"></script>
+    <script src="/frame/js/data/morris-data.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="/js/dist/js/sb-admin-2.js"></script>
+    <script src="/frame/js/dist/js/sb-admin-2.js"></script>
 
     <!-- 引用wangEditor js -->
-    <script type="text/javascript" src="/js/wangEditor/wangEditor.js"></script>
+    <script type="text/javascript" src="/frame/js/wangEditor/wangEditor.js"></script>
 
     <%-- 引入日期选择控件 --%>
-    <script type="text/JavaScript" src="/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/JavaScript" src="/frame/My97DatePicker/WdatePicker.js"></script>
 
     <title>敏捷开发管理系统</title>
     <style>
@@ -121,15 +121,18 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">任务<strong class="caret"></strong></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="SearchProject">搜索任务</a>
+                                    <a href="/user/SearchTaskPage">搜索任务</a>
                                 </li>
                                 <li>
-                                    <a href="CreatProject">创建任务</a>
+                                    <a href="/user/CreateTaskPage">创建任务</a>
+                                </li>
+                                <li>
+                                    <a href="/user/TaskDetailPage">任务详情</a>
                                 </li>
                                 <li class="divider">
                                 </li>
                                 <li>
-                                    <a href="MyProject">我的任务</a>
+                                    <a href="/user/MyTaskPage">我的任务</a>
                                 </li>
                             </ul>
                         </li>
@@ -139,7 +142,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.user.userName}<strong class="caret"></strong>&nbsp;&nbsp;&nbsp;&nbsp;</a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#">我的信息</a>
+                                    <a href="/user/userMessagePage">我的信息</a>
                                 </li>
                                 <li>
                                     <a href="#">我的项目</a>

@@ -28,13 +28,13 @@
                             </div>
 
                         </div>
-                        <div class="row clearfix">
-                            <div class="col-md-9 column">
-                                <span class="label label-primary">${p.projectCode}</span>
-                                <span class="label label-primary">购物</span>
-                                <span class="label label-primary">课设</span>
-                            </div>
-                        </div>
+                        <%--<div class="row clearfix">--%>
+                            <%--<div class="col-md-9 column">--%>
+                                <%--<span class="label label-primary">${p.projectCode}</span>--%>
+                                <%--<span class="label label-primary">购物</span>--%>
+                                <%--<span class="label label-primary">课设</span>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
                         <div class="row clearfix">
                             <div class="col-md-1 column">
                                 <h5>

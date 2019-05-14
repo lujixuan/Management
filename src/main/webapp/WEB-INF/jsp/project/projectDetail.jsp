@@ -86,9 +86,6 @@
                                             创建日期:
                                         </h5>
                                         <h5>
-                                            标签:
-                                        </h5>
-                                        <h5>
                                             参与人数:
                                         </h5>
                                     </div>
@@ -101,11 +98,6 @@
                                         </h5>
                                         <h5 >
                                             ${projectInfo.projectDate}
-                                        </h5>
-                                        <h5>
-                                            <span class="label label-primary">${projectInfo.projectCode}</span>
-                                            <span class="label label-primary">购物</span>
-                                            <span class="label label-primary">课设</span>
                                         </h5>
                                         <h5>
                                             4
@@ -135,7 +127,7 @@
                                 </div>
                                 <div class="col-md-10 column">
                                     <div id="wangDiv">
-                                        <h2>网上书店项目文档</h2><p>一个简单的网上书店项目，有许多功能。我们设计的网上书店系统具有：</p><ol><li>外观简洁美观。</li><li>操作简单。</li><li>数据覆盖广。</li></ol><p>外观方面采用Bootstrap框架，开发时比较注重风格统一、界面简洁。其它方面，通过结合自身网购体验，及大多数人的操作逻辑，开发出注重用户体验的网上书店系统。数据库中数据覆盖广，可以较好地满足网站客户与管理员的需求。&nbsp;</p>
+                                        <h2>网上书店项目文档</h2><p>一个简单的网上书店项目，有许多功能。我们设计的网上书店系统具有：</p><ol><li>1.外观简洁美观。</li><li>2.操作简单。</li><li>3.数据覆盖广。</li></ol><p>外观方面采用Bootstrap框架，开发时比较注重风格统一、界面简洁。其它方面，通过结合自身网购体验，及大多数人的操作逻辑，开发出注重用户体验的网上书店系统。数据库中数据覆盖广，可以较好地满足网站客户与管理员的需求。&nbsp;</p>
                                     </div>
                                     <br/>
                                 </div>

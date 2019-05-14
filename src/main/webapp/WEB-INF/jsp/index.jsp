@@ -8,12 +8,12 @@
     <%--<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>--%>
     <%--<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
     <%-- 引入本地JQ和Bootstrap--%>
-    <script src="/js/jquery/2.0.0/jquery.min.js"></script>
-    <link href="/assets/css/bootstrap.css" rel="stylesheet">
-    <script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
-    <link href="/css/fore/style.css" rel="stylesheet">
-    <link href="/assets/css/docs.min.css" rel="stylesheet">
-    <link href="/assets/css/patch.css" rel="stylesheet">
+    <script src="/frame/js/jquery/2.0.0/jquery.min.js"></script>
+    <link href="/frame/assets/css/bootstrap.css" rel="stylesheet">
+    <script src="/frame/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <link href="/frame/css/fore/style.css" rel="stylesheet">
+    <link href="/frame/assets/css/docs.min.css" rel="stylesheet">
+    <link href="/frame/assets/css/patch.css" rel="stylesheet">
 
     <title>敏捷开发管理系统</title>
     <style>

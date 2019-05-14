@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sy.dao.ProjectDao">
+<mapper namespace="com.ljx.dao.ProjectDao">
     <!-- 目的：为DAO接口方法提供sql语句配置 -->
     <!-- 查询用户和密码进行登录 -->
-    <select id="listProject" resultType="com.sy.dto.ProjectDto" >
+    <select id="listProject" resultType="com.ljx.dto.ProjectDto" >
 		select  p.projectId,
 			p.projectName,
 			p.projectCode,
@@ -39,7 +39,7 @@
 		AND pi.projectInfoType='创建人'
 	</select>
 
-	<select id="searchProjectDetail" resultType="com.sy.dto.ProjectDto">
+	<select id="searchProjectDetail" resultType="com.ljx.dto.ProjectDto">
 		select  p.projectId,
 		p.projectName,
 		p.projectCode,
@@ -59,7 +59,7 @@
 	</select>
 
     <!--&lt;!&ndash; 增加用户名和密码进行注册  &ndash;&gt;-->
-    <!--<insert id="registerByUserId" parameterType="com.sy.dto.UserDto">-->
+    <!--<insert id="registerByUserId" parameterType="com.ljx.dto.UserDto">-->
 
  	    <!--insert into users (userId,userPwd,userName)-->
  	    <!--values-->

@@ -5,11 +5,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>关于</title>
 	<!-- Custom fonts for this template-->
-	<link href="/js/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<link href="/frame/js/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
 	<!-- Custom styles for this template-->
-	<link href="/js/css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="/frame/js/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -50,7 +50,7 @@
                                                     <br/>
                                                     <br/>
                                                     <br/>
-                                                    <a href="index.html" class="btn btn-primary btn-user btn-block">
+                                                    <a href="#" onClick="javascript :history.back(-1);" class="btn btn-primary btn-user btn-block">
                                                         <- Back
                                                     </a>
                                                 </div>
@@ -92,14 +92,14 @@
 
 
 <!-- Bootstrap core JavaScript-->
-<script src="/js/vendor/jquery/jquery.min.js"></script>
-<script src="/js/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/frame/js/vendor/jquery/jquery.min.js"></script>
+<script src="/frame/js/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="/js/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/frame/js/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="/js/js/sb-admin-2.min.js"></script>
+<script src="/frame/js/js/sb-admin-2.min.js"></script>
 
 </body>
 

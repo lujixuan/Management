@@ -5,16 +5,20 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <%--<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">--%>
+    <%--<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>--%>
+    <%--<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
+    <script src="/frame/js/jquery/2.0.0/jquery.min.js"></script>
+    <link href="/frame/assets/css/bootstrap.css" rel="stylesheet">
+    <script src="/frame/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <link href="/frame/css/fore/style.css" rel="stylesheet">
     <title>注册</title>
     <style type="text/css">
         .translucent {
             padding: 30px 50px;
-            width: 450px;
+            width: 440px;
             background: rgba(255,255,255,0.7);
-            height: 370px;
+            height: 420px;
             margin: auto;
             position: absolute;
             top: 0;
@@ -40,6 +44,11 @@
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" id="userName" name="userName" placeholder="姓名"/>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="userEmail" name="userEmail" placeholder="邮箱"/>
                     </div>
                     <div>
                     </div>

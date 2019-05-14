@@ -52,7 +52,7 @@
         <div class="col-md-6 column">
             <div class="form-horizontal" role="form">
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" style="padding-left: 10px; padding-right: 10px">项目标签:</label>
+                    <label class="col-sm-2 control-label" style="padding-left: 10px; padding-right: 10px">任务标签:</label>
                     <div class="col-sm-10">
                         <div class="input-group">
                             <label type="text" class="form-control" id="userId" name="userId" >
