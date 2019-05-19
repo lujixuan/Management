@@ -40,7 +40,7 @@
     <script type="text/javascript" src="/frame/js/wangEditor/wangEditor.js"></script>
 
     <%-- 引入日期选择控件 --%>
-    <script type="text/JavaScript" src="/frame/My97DatePicker/WdatePicker.js"></script>
+    <link href="/frame/datetimepicker/css/datetimepicker.css" rel="stylesheet" media="screen">
 
     <title>敏捷开发管理系统</title>
     <style>
@@ -88,27 +88,25 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li >
-                            <a href="personal">总览</a>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">总览：网上书店<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/user/personal">网上书店</a>
+                                </li>
+                                <li>
+                                    <a href="/user/personal">白度网盘</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">项目<strong class="caret"></strong></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="/user/personal">全部项目</a>
-                                </li>
-                                <li>
-                                    <a href="/user/personal">网上书店项目</a>
-                                </li>
-                                <li>
-                                    <a href="/user/personal">白度网盘项目</a>
-                                </li>
-                                <li class="divider">
-                                <li>
                                     <a href="SearchProjectPage">搜索项目</a>
                                 </li>
                                 <li>
-                                    <a href="CreatProject">创建项目</a>
+                                    <a href="CreatProjectPage">创建项目</a>
                                 </li>
                                 <li class="divider">
                                 </li>

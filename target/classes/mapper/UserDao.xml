@@ -6,7 +6,7 @@
 	<!-- 目的：为DAO接口方法提供sql语句配置 -->
 	<!-- 查询用户和密码进行登录 -->
 	<select id="findByUserId" resultType="com.ljx.dto.UserDto" parameterType="String">
-	
+
 		select * from users where userId = #{userId}
 
 	</select>

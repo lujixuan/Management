@@ -9,7 +9,8 @@
 		select  p.projectId,
 			p.projectName,
 			p.projectCode,
-			p.projectDate,
+			DATE_FORMAT(p.projectDate,'%Y-%m-%d') projectDate,
+			DATE_FORMAT(p.projectChangeDate,'%Y-%m-%d') projectChangeDate,
 			p.projectDescribe,
 			pi.projectInfoUserId userId,
 			u.userName
@@ -21,7 +22,7 @@
 				AND pi.projectInfoUserId = #{loginUserId}
 			</if>
 			<if test="projectName != null and projectName != ''">
-				AND p.projectName = #{projectName}
+				AND p.projectName like '%'+#{projectName}+'%'
 			</if>
 			<if test="projectCode != null and projectCode != ''">
 				AND p.projectCode = #{projectCode}
@@ -43,8 +44,10 @@
 		select  p.projectId,
 		p.projectName,
 		p.projectCode,
-		p.projectDate,
+		DATE_FORMAT(p.projectDate,'%Y-%m-%d') projectDate,
+		DATE_FORMAT(p.projectChangeDate,'%Y-%m-%d') projectChangeDate,
 		p.projectDescribe,
+		p.projectDoc,
 		pi.projectInfoUserId userId,
 		u.userName
 		from projects p
@@ -58,13 +61,82 @@
 		AND pi.projectInfoType='创建人'
 	</select>
 
-    <!--&lt;!&ndash; 增加用户名和密码进行注册  &ndash;&gt;-->
-    <!--<insert id="registerByUserId" parameterType="com.ljx.dto.UserDto">-->
+	<select id="searchProjectInfoType" resultType="string">
+		select pi.projectInfoType
+		from projectInfos pi
+		where pi.projectInfoProjectId = #{projectId}
+		and pi.projectInfoUserId = #{loginUserId}
+	</select>
 
- 	    <!--insert into users (userId,userPwd,userName)-->
- 	    <!--values-->
- 	    <!--(#{userId},#{userPwd},#{userName})-->
+	<select id="searchProjectUserNum" resultType="integer">
+		select count(*)
+		from projectInfos pi
+		where pi.projectInfoProjectId = #{projectId}
+		and pi.projectInfoType != "申请中"
+	</select>
 
- 	<!--</insert>-->
+	<select id="searchProjectLabelList" resultType="com.ljx.dto.LabelDto">
+		select labelValue
+		from labels
+		where labelProjectId = #{projectId}
+		and labelType = '项目'
+	</select>
+
+	<select id="searchTaskLabelList" resultType="com.ljx.dto.LabelDto">
+		select labelValue
+		from labels
+		where labelProjectId = #{projectId}
+		and labelType = '任务'
+	</select>
+
+	<insert id="applyToProject" parameterType="com.ljx.dto.ApplyToProjectDto">
+		insert
+		into projectInfos
+		values(#{projectInfoProjectId},#{projectInfoUserId},#{projectInfoType},#{projectInfoRemark});
+	</insert>
+
+	<delete id="deleteLabel">
+		delete
+		from labels
+		where labelProjectId=#{labelProjectId}
+		and labelType=#{labelType}
+	</delete>
+
+	<insert id="insertLabel">
+		insert
+		into labels(labelValue, labelProjectId, labelType)
+		value(#{labelValue},#{labelProjectId},#{labelType});
+	</insert>
+
+	<update id="updateProjectInfo" parameterType="com.ljx.dto.ProjectDto">
+		update projects
+		set projectName=#{projectName},
+			projectCode=#{projectCode},
+			projectDoc=#{projectDoc},
+			projectDescribe=#{projectDescribe},
+			projectChangeDate=now()
+		where projectId=#{projectId}
+	</update>
+
+	<insert id="insertProjectChangeInfo">
+		insert
+		into projectChanges(projectChangeProjectId, projectChangeUserId, projectChangeDate, projectChangeOldValue, projectChangeNewValue, projectChangePlace)
+		value (#{projectChangeProjectid},#{projectChangeUserId},now(),#{projectChangeOldValue},#{projectChangeNewValue},#{projectChangeType})
+	</insert>
+
+	<insert id="insertProject" parameterType="com.ljx.dto.ProjectDto">
+		insert
+		into projects(projectDate,projectChangeDate)
+		values (now(),now())
+		<selectKey keyProperty="projectId" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<insert id="insertProjectInfo">
+		insert
+		into projectInfos(projectInfoProjectId, projectInfoUserId, projectInfoType)
+		value (#{projectId},#{loginUserId},"创建人")
+	</insert>
 
 </mapper>

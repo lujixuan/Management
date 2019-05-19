@@ -1,6 +1,7 @@
 package com.ljx.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.alibaba.fastjson.JSON;
@@ -19,9 +20,11 @@ import com.ljx.service.UserService;
 public class UserController {
 	
 	@Autowired
-	private UserService userServivce;
-	
-	//正常访问login页面
+	private UserService userService;
+
+	/**
+	 * 访问login页面
+	 */
 	@RequestMapping("/login")
 	public String login(){
 		return "login";
@@ -49,26 +52,10 @@ public class UserController {
 
     /**
      * 登录
-     * @param userDto
-     * @param model
-     * @param request
-     * @return
      */
 	@RequestMapping("/checkLogin")
-	public String checkLogin(UserDto userDto, Model model, HttpServletRequest request){
-		userDto = userServivce.checkLogin(userDto.getUserId(), userDto.getUserPwd());
-		if(userDto != null){
-			model.addAttribute("user", userDto);
-			model.addAttribute("userJson", JSON.toJSON(userDto));
-			return "personal";
-		}
-		request.setAttribute("error_username","用户名不存在！");
-		return "login.jsp";
-	}
-
-	@RequestMapping("/anotherpage")
-	public String hrefpage(){
-		return "anotherpage";
+	public String checkLogin(UserDto userDto, Model model, HttpServletRequest request, HttpServletResponse response){
+		return userService.checkLogin(userDto, model, request, response);
 	}
 
 	@RequestMapping("/outLogin")
@@ -85,12 +72,6 @@ public class UserController {
 
 	@RequestMapping("/register")
 	public String register(UserDto userDto, Model model){
-		UserDto userDto1 = userDto;
-		if(userServivce.findById(userDto.getUserId())){
-			userServivce.registerByUserId(userDto);
-			model.addAttribute("user", userDto);
-			return "personal";
-		}
-		return "about";
+		return userService.registerByUserId(userDto, model);
 	}
 }

@@ -9,6 +9,8 @@ public class UserDto {
 	
 	private String userPwd;
 
+	private String rememberMe;
+
 	public String getUserName() {
 		return userName;
 	}
@@ -31,5 +33,13 @@ public class UserDto {
 
 	public void setUserPwd(String userPwd) {
 		this.userPwd = userPwd;
+	}
+
+	public String getRememberMe() {
+		return rememberMe;
+	}
+
+	public void setRememberMe(String rememberMe) {
+		this.rememberMe = rememberMe;
 	}
 }

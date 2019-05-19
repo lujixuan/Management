@@ -12,7 +12,7 @@
         <div class="col-md-12 column">
             <form action="/user/searchProject" method="post">
                 <div class="panel panel-default">
-                    <div class="panel-body" style="padding-right: 40px; padding-left: 40px">
+                    <div class="panel-body" style="padding-right: 30px; padding-left: 30px">
                         <div class="row clearfix">
                             <div class="col-md-3 column">
                                 <div class="form-horizontal" role="form">
@@ -49,7 +49,11 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">任务类型:</label>
                                         <div class="col-sm-8">
-                                            <select type="text" class="form-control" id="usdsdsId" name="userId"></select>
+                                            <select type="text" class="form-control" id="usdsdsId" name="userId" >
+                                                <option></option>
+                                                <option>需求</option>
+                                                <option>缺陷</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -63,6 +67,11 @@
                                         <label class="col-sm-4 control-label">优先级:</label>
                                         <div class="col-sm-8">
                                             <select type="text" class="form-control" id="projectdsdse" name="projectName" ></select>
+                                            <option></option>
+                                            <option>紧急</option>
+                                            <option>高</option>
+                                            <option>普通</option>
+                                            <option>低</option>
                                         </div>
                                     </div>
                                 </div>
@@ -73,6 +82,13 @@
                                         <label class="col-sm-4 control-label">版本:</label>
                                         <div class="col-sm-8">
                                             <select type="text" class="form-control" id="psddstCode" name="projectCode" ></select>
+                                            <option></option>
+                                            <c:forEach>
+                                                <option>紧急</option>
+                                                <option>高</option>
+                                                <option>普通</option>
+                                                <option>低</option>
+                                            </c:forEach>
                                         </div>
                                     </div>
                                 </div>
@@ -80,7 +96,7 @@
                             <div class="col-md-3 column">
                                 <div class="form-horizontal" role="form">
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">任务标签:</label>
+                                        <label class="col-sm-4 control-label">项目名称:</label>
                                         <div class="col-sm-8">
                                             <select type="text" class="form-control" id="dsdsame" name="userName"></select>
                                         </div>
@@ -93,6 +109,13 @@
                                         <label class="col-sm-4 control-label">任务状态:</label>
                                         <div class="col-sm-8">
                                             <select type="text" class="form-control" id="udsdsrId" name="userId"></select>
+                                            <option></option>
+                                            <option>新建</option>
+                                            <option>开始</option>
+                                            <option>解决</option>
+                                            <option>测试</option>
+                                            <option>完成</option>
+                                            <option>关闭</option>
                                         </div>
                                     </div>
                                 </div>
@@ -105,11 +128,11 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">创建时间:</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="projectDate" name="projectDate" onclick="WdatePicker({startDate:'2019-01-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+                                            <input type="text" class="form-control" id="projectDate" name="projectDate" />
                                         </div>
                                         <label class="col-sm-1 control-label" >~</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="projectToDate" name="projectToDate" onClick="WdatePicker({el:this,dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+                                            <input type="text" class="form-control" id="projectToDate" name="projectToDate"  />
                                         </div>
                                     </div>
                                 </div>
@@ -119,11 +142,11 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">截止时间:</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="projectDate" name="projectDate" onclick="WdatePicker({startDate:'2019-01-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+                                            <input type="text" class="form-control" id="projectDate" name="projectDate"  />
                                         </div>
                                         <label class="col-sm-1 control-label">~</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="projectToDate" name="projectToDate" onClick="WdatePicker({el:this,dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+                                            <input type="text" class="form-control" id="projectToDate" name="projectToDate" />
                                         </div>
                                     </div>
                                 </div>
@@ -154,7 +177,7 @@
         </div>
     </div>
     <div class="panel panel-default"  >
-        <div class="panel-body" style="padding-top: 10px; padding-right: 40px; padding-left: 40px">
+        <div class="panel-body" style="padding-top: 10px; padding-right: 30px; padding-left: 30px">
         <div class="row clearfix">
             <div class="col-md-12 column">
 
@@ -252,8 +275,8 @@
                                 <hr style="margin-top: 10px; margin-bottom: 10px"/>
                             </div>
                         </div>
-                            </div>
-                        </div>
+                    </div>
+                </div>
 
 
                 <div class="row clearfix">
