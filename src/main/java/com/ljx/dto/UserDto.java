@@ -11,6 +11,10 @@ public class UserDto {
 
 	private String rememberMe;
 
+	private String userOldPwd;
+
+	private String userPwdConfirm;
+
 	public String getUserName() {
 		return userName;
 	}
@@ -41,5 +45,21 @@ public class UserDto {
 
 	public void setRememberMe(String rememberMe) {
 		this.rememberMe = rememberMe;
+	}
+
+	public String getUserOldPwd() {
+		return userOldPwd;
+	}
+
+	public void setUserOldPwd(String userOldPwd) {
+		this.userOldPwd = userOldPwd;
+	}
+
+	public String getUserPwdConfirm() {
+		return userPwdConfirm;
+	}
+
+	public void setUserPwdConfirm(String userPwdConfirm) {
+		this.userPwdConfirm = userPwdConfirm;
 	}
 }

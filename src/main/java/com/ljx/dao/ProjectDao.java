@@ -1,10 +1,9 @@
 package com.ljx.dao;
 
-import com.ljx.dto.ApplyToProjectDto;
-import com.ljx.dto.LabelDto;
-import com.ljx.dto.ProjectDto;
+import com.ljx.dto.*;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ProjectDao {
@@ -33,5 +32,21 @@ public interface ProjectDao {
 
     void insertProject(ProjectDto projectDto);
 
-    void insertProjectInfo(ProjectDto projectDto);
+    void insertProjectInfo(ProjectDto projectDto, @Param(value = "createId")String createId);
+
+    List<ProjectDto> findProjectListByUserId(@Param(value = "userId")String userId);
+
+    List<ProjectInfoDto> searchProjectUserInfoList(@Param(value = "projectId")Integer projectId);
+
+    List<ProjectChangeDto> searchProjectChangeList(@Param(value = "projectId")Integer projectId);
+
+    int searchUnfinishTaskNum(@Param(value = "projectId")Integer projectId);
+
+    String searchProjectNameById(@Param(value = "projectId")Integer projectId);
+
+    int countProjectChangeNum(@Param(value = "projectId") int projectId, @Param(value = "date") Date date);
+
+    int countTaskChangeNum(@Param(value = "projectId") int projectId, @Param(value = "date") Date date);
+
+
 }

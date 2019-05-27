@@ -1,9 +1,10 @@
 package com.ljx.dto;
 
-public class projectChangeDto {
+public class ProjectChangeDto {
     private Integer projectChangeId;
     private Integer projectChangeProjectId;
     private String projectChangeUserId;
+    private String projectChangeUserName;
     private String projectChangeDate;
     private String projectChangeOldValue;
     private String projectChangeNewValue;
@@ -63,5 +64,13 @@ public class projectChangeDto {
 
     public void setProjectChangePlace(String projectChangePlace) {
         this.projectChangePlace = projectChangePlace;
+    }
+
+    public String getProjectChangeUserName() {
+        return projectChangeUserName;
+    }
+
+    public void setProjectChangeUserName(String projectChangeUserName) {
+        this.projectChangeUserName = projectChangeUserName;
     }
 }

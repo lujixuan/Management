@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -31,7 +33,7 @@
     <!-- Morris Charts JavaScript -->
     <script src="/frame/js/vendor/raphael/raphael.min.js"></script>
     <script src="/frame/js/vendor/morrisjs/morris.min.js"></script>
-    <script src="/frame/js/data/morris-data.js"></script>
+    <%--<script src="/frame/js/data/morris-data.js"></script>--%>
 
     <!-- Custom Theme JavaScript -->
     <script src="/frame/js/dist/js/sb-admin-2.js"></script>
@@ -89,14 +91,13 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">总览：网上书店<strong class="caret"></strong></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">总览：${sessionScope.nowProjectName}<strong class="caret"></strong></a>
                             <ul class="dropdown-menu">
-                                <li>
-                                    <a href="/user/personal">网上书店</a>
-                                </li>
-                                <li>
-                                    <a href="/user/personal">白度网盘</a>
-                                </li>
+                                <c:forEach items="${sessionScope.loginUserProjectList}" var="lp">
+                                    <li>
+                                        <a href="/user/personal?projectId=${lp.projectId}&loginUserId=${sessionScope.user.userId}">${lp.projectName}</a>
+                                    </li>
+                                </c:forEach>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -119,13 +120,10 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">任务<strong class="caret"></strong></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="/user/SearchTaskPage">搜索任务</a>
+                                    <a href="/user/SearchTask?loginUserId=${sessionScope.user.userId}">搜索任务</a>
                                 </li>
                                 <li>
-                                    <a href="/user/CreateTaskPage">创建任务</a>
-                                </li>
-                                <li>
-                                    <a href="/user/TaskDetailPage">任务详情</a>
+                                    <a data-toggle="modal" data-target="#createTaskModal">创建任务</a>
                                 </li>
                                 <li class="divider">
                                 </li>
@@ -140,13 +138,10 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.user.userName}<strong class="caret"></strong>&nbsp;&nbsp;&nbsp;&nbsp;</a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="/user/userMessagePage">我的信息</a>
+                                    <a data-toggle="modal" data-target="#changePwdModal">修改密码</a>
                                 </li>
                                 <li>
-                                    <a href="#">我的项目</a>
-                                </li>
-                                <li>
-                                    <a href="#">我的任务</a>
+                                    <a href="/user/userMessagePage?loginUserId=${sessionScope.user.userId}">申请消息</a>
                                 </li>
                                 <li class="divider">
                                 </li>
@@ -161,4 +156,75 @@
         </div>
     </div>
 </div>
+
+<!-- 模态框（Modal）创建任务 -->
+<div class="modal fade" id="createTaskModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:400px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    请选择任务所属项目
+                </h4>
+            </div>
+            <div class="modal-body">
+                <c:forEach items="${loginUserProjectList}" var="lp">
+                        <a href="/user/CreateTaskPage?projectId=${lp.projectId}&projectName=${lp.projectName}" class="btn btn-default  btn-primary  btn-block ">${lp.projectName}</a>
+                </c:forEach>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- 模态框（Modal）修改密码 -->
+<div class="modal fade" id="changePwdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:400px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabe2">
+                    修改密码
+                </h4>
+            </div>
+            <form action="/user/ChangePwd" method="post">
+                <div class="modal-body">
+                    <br/>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="userOldPwd" name="userOldPwd" placeholder="旧密码" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="userPwd" name="userPwd" placeholder="新密码" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="userPwdConfirm" name="userPwdConfirm" placeholder="确认密码" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" value="${sessionScope.user.userId}" class="form-control" id="userId" name="userId" style="display: none"/>
+                    </div>
+                </div>
+                <div class="modal-footer" style="margin-top: 5px">
+                    <div class="row clearfix">
+                        <div class="col-md-6 column">
+                            <button type="button" class="btn btn-default btn-block" data-dismiss="modal">取消
+                            </button>
+                        </div>
+                        <div class="col-md-6 column">
+                            <input type="submit" class="btn btn-default  btn-primary  btn-block" value="修改">
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
 <div class="page">

@@ -4,18 +4,240 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ljx.dao.TaskDao">
 
-    <select id="findByUserId" resultType="com.ljx.dto.UserDto" parameterType="String">
-
-		select * from users where userId = #{userId}
-
+    <select id="listTask" resultType="com.ljx.dto.TaskDto" parameterType="com.ljx.dto.TaskDto">
+		select
+		t.taskId,
+		t.taskType,
+		t.taskPriority,
+		DATE_FORMAT(t.taskStartDate,'%Y-%m-%d') taskStartDate,
+		DATE_FORMAT(t.taskEndDate,'%Y-%m-%d') taskEndDate,
+		DATE_FORMAT(t.taskChangeDate,'%Y-%m-%d') taskChangeDate,
+		DATE_FORMAT(t.taskFinishDate,'%Y-%m-%d') taskFinishDate,
+		t.taskName,
+		t.taskDoc,
+		t.taskVersion,
+		t.taskProjectId,
+		t.taskState,
+		t.taskCreateUser,
+		t.taskTestUser,
+		t.taskFinishUser,
+		p.projectName taskProjectName,
+		p.projectCode taskProjectCode
+		from taskInfos ti
+			join tasks t on ti.taskInfoTaskId = t.taskId
+			left join projects p on t.taskProjectId = p.projectId
+			left join projectInfos pI on p.projectId = pI.projectInfoProjectId
+			left join subtasks s on t.taskId = s.subtaskMother
+-- 		from projectInfos pi
+-- 		  left join projects p on p.projectId = pi.projectInfoProjectId
+-- 		  left join tasks t on p.projectId = t.taskProjectId
+-- 		  join taskInfos ti on ti
+-- 		  join subtasks s on t.taskId = s.subtaskSon
+		<where>
+			<if test="loginUserId != null and loginUserId != ''">
+				AND ti.taskInfoUserId = #{loginUserId}
+			</if>
+			<if test="taskId != null and taskId != ''">
+				AND t.taskId = #{taskId}
+			</if>
+			<if test="taskName != null and taskName != ''">
+				AND t.taskName like CONCAT(CONCAT('%',#{taskName},'%'))
+			</if>
+			<if test="taskPriority != null and taskPriority != ''">
+				AND t.taskPriority = #{taskPriority}
+			</if>
+			<if test="taskVersion != null and taskVersion != ''">
+				AND t.taskVersion = #{taskVersion}
+			</if>
+			<if test="taskType != null and taskType != ''">
+				AND t.taskType = #{taskType}
+			</if>
+			<if test="taskState != null and taskState != ''">
+				AND t.taskState = #{taskState}
+			</if>
+			<if test="taskProjectName != null and taskProjectName != ''">
+				AND p.projectName = like CONCAT(CONCAT('%',#{taskProjectName},'%'))
+			</if>
+			<if test="taskProjectCode != null and taskProjectCode != ''">
+				AND p.projectCode = #{taskProjectCode}
+			</if>
+			<if test="taskCreateUser != null and taskCreateUser != ''">
+				AND t.taskCreateUser = #{taskCreateUser}
+			</if>
+			<if test="taskTestUser != null and taskTestUser != ''">
+				AND t.taskTestUser = #{taskTestUser}
+			</if>
+			<if test="taskFinishUser != null and taskFinishUser != ''">
+				AND t.taskFinishUser = #{taskFinishUser}
+			</if>
+			<if test="taskMatherId != null and taskMatherId != ''">
+				AND s.subtaskMother = #{taskMatherId}
+			</if>
+			<if test="taskStartFromDate != null and taskStartFromDate != '' and taskStartToDate != null and taskStartToDate != ''">
+				AND t.taskStartDate between #{taskStartFromDate} and #{taskStartToDate}
+			</if>
+			<if test="taskEndFromDate != null and taskEndFromDate != '' and taskEndToDate != null and taskEndToDate != ''">
+				AND t.taskEndDate between #{taskEndFromDate} and #{taskEndToDate}
+			</if>
+		</where>
+		group by ti.taskInfoTaskId
 	</select>
 
-    <insert id="registerByUserId" parameterType="com.ljx.dto.UserDto">
+	<select id="searchTaskLabelList" resultType="com.ljx.dto.LabelDto">
+		select l.*
+		from labelInfos li
+			join labels l on li.labelInfoLabelId = l.labelId
+		where li.labelInfoTaskId = #{taskId}
+	</select>
 
- 	    insert into users (userId,userPwd,userName)
- 	    values
- 	    (#{userId},#{userPwd},#{userName})
+	<select id="searchTaskProjectLabelList" resultType="com.ljx.dto.LabelDto">
+		select *
+		from labels
+		where labelProjectId=#{projectId}
+		and labelType="任务"
+	</select>
 
- 	</insert>
+	<select id="selectTaskById" resultType="com.ljx.dto.TaskDto">
+		select
+		t.taskId,
+		t.taskType,
+		t.taskPriority,
+		DATE_FORMAT(t.taskStartDate,'%Y-%m-%d') taskStartDate,
+		DATE_FORMAT(t.taskEndDate,'%Y-%m-%d') taskEndDate,
+		DATE_FORMAT(t.taskChangeDate,'%Y-%m-%d') taskChangeDate,
+		DATE_FORMAT(t.taskFinishDate,'%Y-%m-%d') taskFinishDate,
+		t.taskName,
+		t.taskDoc,
+		t.taskVersion,
+		t.taskProjectId,
+		t.taskState,
+		t.taskCreateUser,
+		t.taskTestUser,
+		t.taskFinishUser,
+		p.projectName taskProjectName,
+		p.projectCode taskProjectCode
+		from tasks t
+			join projects p on p.projectId = t.taskProjectId
+		where t.taskId = #{taskId}
+	</select>
 
+	<update id="updateTask">
+		update tasks
+		set taskName=#{taskName},
+			taskVersion=#{taskVersion},
+			taskType=#{taskType},
+			taskEndDate=#{taskEndDate},
+			taskDoc=#{taskDoc},
+			taskState=#{taskState},
+			taskPriority=#{taskPriority},
+			taskChangeDate=now(),
+			taskFinishUser=#{taskFinishUser},
+			taskTestUser=#{taskTestUser}
+		where taskId=#{taskId}
+	</update>
+
+	<update id="updateTaskInfo">
+		update taskInfos
+		set taskInfoUserId=#{taskInfoUserId}
+		where taskInfoTaskId=#{taskInfoTaskId}
+		and taskInfoType=#{taskInfoType}
+	</update>
+
+	<insert id="insertTaskChangeInfo">
+		insert
+		into taskChanges(taskChangeTaskId, taskChangeUserId, taskChangeDate, taskChangeOldValue, taskChangeNewValue, taskChangePlace)
+		value (#{taskId},#{loginUserId},now(),#{oldValue},#{newValue},#{changePlace})
+	</insert>
+
+	<select id="findLabelById" resultType="string">
+		select labelValue
+		from labels
+		where labelId=#{labelId}
+	</select>
+
+	<update id="updateTaskLabel">
+		update labelInfos
+		set labelInfoLabelId=#{labelId}
+		where labelInfoTaskId=#{taskId}
+	</update>
+
+	<!--<insert id="insertTaskLabel">-->
+		<!--insert-->
+		<!--into labelInfos-->
+		<!--value (#{labelId},#{taskId})-->
+	<!--</insert>-->
+
+	<insert id="insertTask" parameterType="com.ljx.dto.TaskDto">
+		insert
+		into tasks(taskStartDate,taskChangeDate,taskProjectId,taskCreateUser)
+		values (now(),now(),#{taskProjectId},#{taskCreateUser})
+		<selectKey keyProperty="taskId" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<insert id="insertSubtask">
+		insert
+		into subtasks(subtaskMother, subtaskSon)
+		VALUE (#{taskMatherId}, #{taskId})
+	</insert>
+
+	<insert id="insertLabelInfo">
+		insert
+		into labelInfos(labelInfoLabelId, labelInfoTaskId)
+		value (#{labelId},#{taskId})
+	</insert>
+
+	<select id="searchTaskChangeByProjectId" resultType="com.ljx.dto.TaskChangeDto">
+		select t.*,
+			   u.userName taskChangeUserName
+		from taskChanges t
+			join users u on t.taskChangeUserId = u.userId
+			join tasks t2 on t.taskChangeTaskId = t2.taskId
+		where t2.taskProjectId=#{projectId}
+		order by t.taskChangeDate desc
+	</select>
+
+	<select id="searchTaskChangeByTaskId" resultType="com.ljx.dto.TaskChangeDto">
+		select t.*,
+			   u.userName taskChangeUserName
+		from taskChanges t
+			join users u on t.taskChangeUserId = u.userId
+		where t.taskChangeTaskId=#{taskId}
+		order by t.taskChangeDate desc
+	</select>
+
+	<select id="listUnfinishTask" resultType="com.ljx.dto.TaskDto">
+		select
+		t.taskId,
+		t.taskType,
+		t.taskPriority,
+		DATE_FORMAT(t.taskStartDate,'%Y-%m-%d') taskStartDate,
+		DATE_FORMAT(t.taskEndDate,'%Y-%m-%d') taskEndDate,
+		DATE_FORMAT(t.taskChangeDate,'%Y-%m-%d') taskChangeDate,
+		DATE_FORMAT(t.taskFinishDate,'%Y-%m-%d') taskFinishDate,
+		t.taskName,
+		t.taskDoc,
+		t.taskVersion,
+		t.taskProjectId,
+		t.taskState,
+		t.taskCreateUser,
+		t.taskTestUser,
+		t.taskFinishUser,
+		p.projectName taskProjectName,
+		p.projectCode taskProjectCode
+		from taskInfos ti
+			join tasks t on ti.taskInfoTaskId = t.taskId
+			left join projects p on t.taskProjectId = p.projectId
+			left join projectInfos pI on p.projectId = pI.projectInfoProjectId
+-- 		from tasks t
+-- 			 join projects p on p.projectId = t.taskProjectId
+-- 			 join projectInfos pi on p.projectId = pi.projectInfoProjectId
+			left join subtasks s on t.taskId = s.subtaskSon
+		where p.projectId=#{projectId}
+		and t.taskState!="完成"
+		and t.taskState!="关闭"
+		group by t.taskId
+
+	</select>
 </mapper>

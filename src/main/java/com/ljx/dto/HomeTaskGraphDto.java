@@ -5,8 +5,9 @@ import java.util.Date;
 public class HomeTaskGraphDto {
     private Integer projectId; // 项目id
     private Date taskDate;
-    private Integer teskFinishNum;
+    private Integer taskFinishNum;
     private Integer taskUnfinishNum;
+    private String taskDateString;
 
     public Integer getProjectId() {
         return projectId;
@@ -24,19 +25,27 @@ public class HomeTaskGraphDto {
         this.taskDate = taskDate;
     }
 
-    public Integer getTeskFinishNum() {
-        return teskFinishNum;
-    }
-
-    public void setTeskFinishNum(Integer teskFinishNum) {
-        this.teskFinishNum = teskFinishNum;
-    }
-
     public Integer getTaskUnfinishNum() {
         return taskUnfinishNum;
     }
 
     public void setTaskUnfinishNum(Integer taskUnfinishNum) {
         this.taskUnfinishNum = taskUnfinishNum;
+    }
+
+    public Integer getTaskFinishNum() {
+        return taskFinishNum;
+    }
+
+    public void setTaskFinishNum(Integer taskFinishNum) {
+        this.taskFinishNum = taskFinishNum;
+    }
+
+    public String getTaskDateString() {
+        return taskDateString;
+    }
+
+    public void setTaskDateString(String taskDateString) {
+        this.taskDateString = taskDateString;
     }
 }

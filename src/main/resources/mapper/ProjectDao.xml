@@ -15,30 +15,35 @@
 			pi.projectInfoUserId userId,
 			u.userName
 		from projects p
-			join projectInfos pi on p.projectId=pi.projectInfoProjectId
-			join users u on pi.projectInfoUserId = u.userId
-		<where>
-			<if test="loginUserId != null and loginUserId != ''">
-				AND pi.projectInfoUserId = #{loginUserId}
-			</if>
-			<if test="projectName != null and projectName != ''">
-				AND p.projectName like '%'+#{projectName}+'%'
-			</if>
-			<if test="projectCode != null and projectCode != ''">
-				AND p.projectCode = #{projectCode}
-			</if>
-			<if test="userId != null and userId != ''">
-				AND pi.projectInfoUserId = #{userId}
-			</if>
-			<if test="userName != null and userName != ''">
-				AND u.userName = #{userName}
-			</if>
-			<if test="projectDate != null and projectDate != '' and projectToDate != null and projectToDate != ''">
-				AND p.projectDate between #{projectDate} and #{projectToDate}
-			</if>
-		</where>
-		AND pi.projectInfoType='创建人'
+			left join projectInfos pi on p.projectId=pi.projectInfoProjectId
+			left join users u on pi.projectInfoUserId = u.userId
+		<include refid="searchProjectWhere"></include>
 	</select>
+
+	<sql id="searchProjectWhere">
+		<if test="loginUserId != null and loginUserId != ''">
+			AND pi.projectInfoUserId = #{loginUserId}
+			AND pi.projectInfoType != "申请中"
+		</if>
+		<if test="projectName != null and projectName != ''">
+			AND p.projectName like CONCAT(CONCAT('%',#{projectName},'%'))
+		</if>
+		<if test="projectCode != null and projectCode != ''">
+			AND p.projectCode = #{projectCode}
+		</if>
+		<if test="userId != null and userId != ''">
+			AND pi.projectInfoUserId = #{userId}
+		</if>
+		<if test="userName != null and userName != ''">
+			AND u.userName = #{userName}
+		</if>
+		<if test="projectDate != null and projectDate != '' and projectToDate != null and projectToDate != ''">
+			AND p.projectDate between #{projectDate} and #{projectToDate}
+		</if>
+		<if test="loginUserId == null or loginUserId == ''">
+			AND pi.projectInfoType='创建人'
+		</if>
+	</sql>
 
 	<select id="searchProjectDetail" resultType="com.ljx.dto.ProjectDto">
 		select  p.projectId,
@@ -133,10 +138,69 @@
 		</selectKey>
 	</insert>
 
+	<select id="findProjectListByUserId" resultType="com.ljx.dto.ProjectDto">
+		select *
+		from projects p
+			join projectInfos pI on p.projectId = pI.projectInfoProjectId
+		where pI.projectInfoUserId=#{userId}
+		and pI.projectInfoType != "申请中"
+	</select>
+
 	<insert id="insertProjectInfo">
 		insert
 		into projectInfos(projectInfoProjectId, projectInfoUserId, projectInfoType)
-		value (#{projectId},#{loginUserId},"创建人")
+		value (#{projectId},#{createId},"创建人")
 	</insert>
 
+	<select id="searchProjectUserInfoList" resultType="com.ljx.dto.ProjectInfoDto">
+		select pi.projectInfoProjectId,
+    		pi.projectInfoUserId,
+    		u.userName projectInfoUserName,
+    		pi.projectInfoType,
+    		pi.projectInfoRemark
+		from projectInfos pi
+			join users u on pi.projectInfoUserId = u.userId
+		where projectInfoProjectId=#{projectId}
+		and projectInfoType!="申请中"
+		and projectInfoType!="创建人"
+	</select>
+
+	<select id="searchProjectChangeList" resultType="com.ljx.dto.ProjectChangeDto">
+		select p.*,
+			   u.userName projectChangeUserName
+		from projectChanges p
+			join users u on p.projectChangeUserId = u.userId
+		where p.projectChangeProjectId=#{projectId}
+		order by p.projectChangeDate desc
+	</select>
+
+	<select id="searchUnfinishTaskNum" resultType="int">
+		select count(*)
+		from tasks t
+			join projects p on t.taskProjectId = p.projectId
+		where p.projectId=#{projectId}
+		and t.taskState!="完成"
+		and t.taskState!="关闭"
+	</select>
+
+	<select id="searchProjectNameById" resultType="string">
+		select projectName
+		from projects
+		where  projectId=#{projectId}
+	</select>
+
+	<select id="countProjectChangeNum" resultType="int">
+		select count(*)
+		from projectChanges
+		where projectChangeDate&gt;=#{date}
+		and projectChangeProjectId=#{projectId}
+	</select>
+
+	<select id="countTaskChangeNum" resultType="int">
+		select count(*)
+		from taskChanges tc
+			join tasks t on tc.taskChangeTaskId = t.taskId
+		where tc.taskChangeDate&gt;=#{date}
+		and t.taskProjectId=#{projectId}
+	</select>
 </mapper>

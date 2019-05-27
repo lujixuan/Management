@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,6 +30,29 @@
 		}
 	</style>
     <script type="text/javascript">
+
+		$(function(){
+
+			<c:if test="${!empty error}">
+			$("span.errorMessage").html("${error}");
+			$("div.loginErrorMessageDiv").show();
+			</c:if>
+
+			$("form.checkLogin").submit(function(){
+				if(0==$("#userName").val().length||0==$("#userPwd").val().length){
+					$("span.errorMessage").html("请输入账号密码");
+					$("div.loginErrorMessageDiv").show();
+					return false;
+				}
+				return true;
+			});
+
+			$("form.checkLogin input").keyup(function(){
+				$("div.loginErrorMessageDiv").hide();
+			});
+		});
+
+
         function checkCookie() {
             var loginId = getCookie("loginId");
             var loginPwd = getCookie("loginPwd");
@@ -53,6 +78,14 @@
 </head>
 <body  style="background-image : url('/images/4.jpg'); background-position:center; background-attachment:fixed;" onload="checkCookie()">
 		<div class="container">
+			<div class="loginErrorMessageDiv" style="display: none;">
+				<div class="alert alert-danger alert-dismissable" style="width:500px;text-align: center;margin: 0 auto">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+						&times;
+					</button>
+					<span class="errorMessage"></span>
+				</div>
+			</div>
 			<div class="row clearfix">
 				<div class="col-md-4 column">
 				</div>

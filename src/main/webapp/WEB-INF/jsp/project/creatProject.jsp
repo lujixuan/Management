@@ -16,7 +16,7 @@
     <form action="createProject?loginUserId=${sessionScope.user.userId}" method="post">
         <div class="row clearfix">
             <div class="col-md-12 column">
-                <div class="panel panel-default">
+                <div class="panel panel-info">
                     <div class="panel-body" style=" padding-right: 35px; padding-left: 35px;">
             <div class="row clearfix">
                 <div class="col-md-12 column">
@@ -136,7 +136,7 @@
         'undo',  // 撤销
         'redo'  // 重复
     ];
-    var $text1 = $('#projectDoc')
+    var $text1 = $('#projectDoc');
     editorProjectDoc.customConfig.onchange = function (html) {
         // 监控变化，同步更新到 textarea
         $text1.val(html)

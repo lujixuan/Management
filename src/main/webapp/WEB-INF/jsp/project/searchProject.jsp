@@ -21,7 +21,7 @@
     <div class="row clearfix">
         <div class="col-md-12 column">
             <form action="/user/searchProject" method="post">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-body" style=" padding-right: 25px; padding-left: 15px; padding-bottom: 5px">
                     <div class="row clearfix">
                         <div class="col-md-3 column">
@@ -71,11 +71,11 @@
                             <div class="form-horizontal" role="form">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">创建时间:</label>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4" >
                                         <input type="text" class=" form-control" id="projectDate" name="projectDate" />
                                     </div>
                                     <label class="col-sm-1 control-label">~</label>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4" >
                                         <input type="text" class="form-control" id="projectToDate" name="projectToDate"  />
                                     </div>
                                 </div>
@@ -218,7 +218,7 @@
     </div>
 </div>
 
-<script src="/frame/layDate-v5.0.9/laydate/laydate.js"></script> <!-- 改成你的路径 -->
+<script src="/frame/layDate-v5.0.9/laydate/laydate.js"></script>
 <script>
     //日期选择控件
     laydate.render({

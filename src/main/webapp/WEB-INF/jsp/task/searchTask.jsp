@@ -10,8 +10,8 @@
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
-            <form action="/user/searchProject" method="post">
-                <div class="panel panel-default">
+            <form action="/user/SearchTask?loginUserId=${sessionScope.user.userId}" method="post">
+                <div class="panel panel-info">
                     <div class="panel-body" style="padding-right: 30px; padding-left: 30px">
                         <div class="row clearfix">
                             <div class="col-md-3 column">
@@ -19,7 +19,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">任务名称:</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="projectName" name="projectName" />
+                                            <input type="text" class="form-control" id="taskName" name="taskName" />
                                         </div>
                                     </div>
                                 </div>
@@ -29,7 +29,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">任务号:</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="projectCode" name="projectCode" />
+                                            <input type="text" class="form-control" id="taskId" name="taskId" />
                                         </div>
                                     </div>
                                 </div>
@@ -37,9 +37,48 @@
                             <div class="col-md-3 column">
                                 <div class="form-horizontal" role="form">
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">任务主题:</label>
+                                        <label class="col-sm-4 control-label">项目名称:</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="userName" name="userName"/>
+                                            <input type="text" class="form-control" id="taskProjectName" name="taskProjectName"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 column">
+                                <div class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">项目代号:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="taskProjectCode" name="taskProjectCode">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row clearfix">
+                            <div class="col-md-3 column">
+                                <div class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">母任务号:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="taskMatherId" name="taskMatherId" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 column">
+                                <div class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">优先级:</label>
+                                        <div class="col-sm-8">
+                                            <select type="text" class="form-control" id="taskPriority" name="taskPriority" >
+                                                <option></option>
+                                                <option value="good">紧急</option>
+                                                <option>高</option>
+                                                <option>普通</option>
+                                                <option>低</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -49,10 +88,28 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">任务类型:</label>
                                         <div class="col-sm-8">
-                                            <select type="text" class="form-control" id="usdsdsId" name="userId" >
+                                            <select type="text" class="form-control" id="taskType" name="taskType" >
                                                 <option></option>
                                                 <option>需求</option>
                                                 <option>缺陷</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 column">
+                                <div class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">任务状态:</label>
+                                        <div class="col-sm-8">
+                                            <select type="text" class="form-control" id="taskState" name="taskState">
+                                                <option></option>
+                                                <option>新建</option>
+                                                <option>开始</option>
+                                                <option>解决</option>
+                                                <option>测试</option>
+                                                <option>完成</option>
+                                                <option>关闭</option>
                                             </select>
                                         </div>
                                     </div>
@@ -64,105 +121,47 @@
                             <div class="col-md-3 column">
                                 <div class="form-horizontal" role="form">
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">优先级:</label>
+                                        <label class="col-sm-4 control-label">所属版本:</label>
                                         <div class="col-sm-8">
-                                            <select type="text" class="form-control" id="projectdsdse" name="projectName" ></select>
-                                            <option></option>
-                                            <option>紧急</option>
-                                            <option>高</option>
-                                            <option>普通</option>
-                                            <option>低</option>
+                                            <input type="text" class="form-control" id="taskVersion" name="taskVersion" >
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 column">
-                                <div class="form-horizontal" role="form">
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label">版本:</label>
-                                        <div class="col-sm-8">
-                                            <select type="text" class="form-control" id="psddstCode" name="projectCode" ></select>
-                                            <option></option>
-                                            <c:forEach>
-                                                <option>紧急</option>
-                                                <option>高</option>
-                                                <option>普通</option>
-                                                <option>低</option>
-                                            </c:forEach>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 column">
-                                <div class="form-horizontal" role="form">
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label">项目名称:</label>
-                                        <div class="col-sm-8">
-                                            <select type="text" class="form-control" id="dsdsame" name="userName"></select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 column">
-                                <div class="form-horizontal" role="form">
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label">任务状态:</label>
-                                        <div class="col-sm-8">
-                                            <select type="text" class="form-control" id="udsdsrId" name="userId"></select>
-                                            <option></option>
-                                            <option>新建</option>
-                                            <option>开始</option>
-                                            <option>解决</option>
-                                            <option>测试</option>
-                                            <option>完成</option>
-                                            <option>关闭</option>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            <div class="col-md-9 column">
+                                <div class="row clearfix">
 
-                        <div class="row clearfix">
-                            <div class="col-md-4 column">
-                                <div class="form-horizontal" role="form">
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">创建时间:</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="projectDate" name="projectDate" />
+                                    <div class="col-md-6 column">
+                                        <div class="form-horizontal" role="form">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label" >创建时间:</label>
+                                                <div class="col-sm-4" style="padding-left: 3px;padding-right: 3px">
+                                                    <input type="text" class="form-control" id="taskStartFromDate" name="taskStartFromDate" />
+                                                </div>
+                                                <label class="col-sm-1 control-label" >~</label>
+                                                <div class="col-sm-4" style="padding-left: 3px;padding-right: 3px">
+                                                    <input type="text" class="form-control" id="taskStartToDate" name="taskStartToDate"  />
+                                                </div>
+                                            </div>
                                         </div>
-                                        <label class="col-sm-1 control-label" >~</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="projectToDate" name="projectToDate"  />
+                                    </div>
+                                    <div class="col-md-6 column">
+                                        <div class="form-horizontal" role="form">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">截止时间:</label>
+                                                <div class="col-sm-4" style="padding-left: 3px;padding-right: 3px">
+                                                    <input type="text" class="form-control" id="taskEndFromDate" name="taskEndFromDate"  />
+                                                </div>
+                                                <label class="col-sm-1 control-label">~</label>
+                                                <div class="col-sm-4" style="padding-left: 3px">
+                                                    <input type="text" class="form-control" id="taskEndToDate" name="taskEndToDate" />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 column">
-                                <div class="form-horizontal" role="form">
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">截止时间:</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="projectDate" name="projectDate"  />
-                                        </div>
-                                        <label class="col-sm-1 control-label">~</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="projectToDate" name="projectToDate" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-1 column">
-                            </div>
-                            <div class="col-md-3 column">
-                                <div class="form-horizontal" role="form">
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label">排序方式:</label>
-                                        <div class="col-sm-8">
-                                            <select type="text" class="form-control" id="udsdsrId" name="userId"></select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="row clearfix">
                             <div class="col-md-10 column">
@@ -176,33 +175,31 @@
             </form>
         </div>
     </div>
-    <div class="panel panel-default"  >
-        <div class="panel-body" style="padding-top: 10px; padding-right: 30px; padding-left: 30px">
+
+<c:forEach items="${taskList.list}" var="t">
+<div class="panel panel-default"  >
+    <div class="panel-body" style="padding-top: 10px; padding-right: 30px; padding-left: 30px">
         <div class="row clearfix">
             <div class="col-md-12 column">
-
-
                 <div class="row clearfix">
                     <div class="col-md-12 column">
                         <div class="row clearfix">
-                            <div class="col-md-10 column">
-                                <h3>
-                                        DK-1 在搜索页面添加一个删除按钮,用来删除数据
+                            <div class="col-md-10 column" style="padding-top: 1px;padding-bottom: 3px">
+                                <h3 style="display: inline-block; ">
+                                       ${t.taskProjectCode}-${t.taskId}  ${t.taskName}
                                 </h3>
+                                <div style="margin-left: 20px; display: inline-block; ">
+                                    <c:forEach items="${t.taskLabelList}" var="tl">
+                                        <span class="label label-primary">${tl.labelValue}</span>
+                                    </c:forEach>
+                                </div>
                             </div>
                             <div class="col-md-2 column">
                                 <br/>
-                                <a class="btn btn btn-outline btn-info btn-block" href="/user/projectInfo?projectId=${p.projectId}">
+                                <a class="btn btn btn-outline btn-info btn-block" href="/user/TaskDetail?taskId=${t.taskId}&loginUserId=${sessionScope.user.userId}">
                                     查看更多&nbsp;<span class="glyphicon glyphicon-chevron-right"></span>
                                         <%--&nbsp;&nbsp;&nbsp;»--%>
                                 </a>
-                            </div>
-                        </div>
-                        <div class="row clearfix">
-                            <div class="col-md-9 column">
-                                <span class="label label-primary">${p.projectCode}</span>
-                                <span class="label label-primary">Java</span>
-                                <span class="label label-primary">develop</span>
                             </div>
                         </div>
                         <div class="row clearfix">
@@ -216,10 +213,10 @@
                             </div>
                             <div class="col-md-2 column" style="margin:0;padding:0;display: inline-block;vertical-align: middle;">
                                 <h5 >
-                                        卢轩
+                                    ${t.taskCreateUserName}
                                 </h5>
                                 <h5 >
-                                    普通
+                                    ${t.taskPriority}
                                 </h5>
                             </div>
                             <div class="col-md-1 column">
@@ -232,10 +229,10 @@
                             </div>
                             <div class="col-md-2 column" style="margin:0;padding:0;display: inline-block;vertical-align: middle;">
                                 <h5 >
-                                        需求
+                                     ${t.taskType}
                                 </h5>
                                 <h5 >
-                                    2019-05-01
+                                    ${t.taskStartDate}
                                 </h5>
                             </div>
                             <div class="col-md-1 column">
@@ -243,267 +240,99 @@
                                     版本:
                                 </h5>
                                 <h5>
-                                    最后更新:
+                                    截止时间:
                                 </h5>
                             </div>
                             <div class="col-md-2 column" style="margin:0;padding:0;display: inline-block;vertical-align: middle;">
                                 <h5 >
-                                        1.0.1
+                                     ${t.taskVersion}
                                 </h5>
                                 <h5 >
-                                    2019-06-07
+                                   ${t.taskEndDate}
                                 </h5>
                             </div><div class="col-md-1 column">
                                 <h5>
                                     状态:
                                 </h5>
                                 <h5>
-                                    到期日:
+                                    最后更新:
                                 </h5>
                             </div>
                             <div class="col-md-2 column" style="margin:0;padding:0;display: inline-block;vertical-align: middle;">
                                 <h5 >
-                                        开始
+                                     ${t.taskState}
                                 </h5>
                                 <h5 >
-                                       2019-05-05
+                                      ${t.taskChangeDate}
                                 </h5>
                             </div>
                         </div>
-                        <div class="row clearfix">
-                            <div class="col-md-12 column">
-                                <hr style="margin-top: 10px; margin-bottom: 10px"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row clearfix">
-                    <div class="col-md-12 column">
-                        <div class="row clearfix">
-                            <div class="col-md-10 column">
-                                <h3>
-                                    DK-2 前端代码需要优化.加载太慢，需要重构一下代码
-                                </h3>
-                            </div>
-                            <div class="col-md-2 column">
-                                <br/>
-                                <a class="btn btn btn-outline btn-info btn-block" href="/user/projectInfo?projectId=${p.projectId}">
-                                    查看更多&nbsp;<span class="glyphicon glyphicon-chevron-right"></span>
-                                    <%--&nbsp;&nbsp;&nbsp;»--%>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="row clearfix">
-                            <div class="col-md-9 column">
-                                <span class="label label-primary">DK</span>
-                                <span class="label label-primary">Java</span>
-                                <span class="label label-primary">hotfix</span>
-                            </div>
-                        </div>
-                        <div class="row clearfix">
-                            <div class="col-md-1 column">
-                                <h5>
-                                    创建人:
-                                </h5>
-                                <h5>
-                                    优先级:
-                                </h5>
-                            </div>
-                            <div class="col-md-2 column" style="margin:0;padding:0;display: inline-block;vertical-align: middle;">
-                                <h5 >
-                                    卢轩
-                                </h5>
-                                <h5 >
-                                    紧急
-                                </h5>
-                            </div>
-                            <div class="col-md-1 column">
-                                <h5>
-                                    任务类型:
-                                </h5>
-                                <h5>
-                                    创建时间:
-                                </h5>
-                            </div>
-                            <div class="col-md-2 column" style="margin:0;padding:0;display: inline-block;vertical-align: middle;">
-                                <h5 >
-                                    缺陷
-                                </h5>
-                                <h5 >
-                                    2019-03-03
-                                </h5>
-                            </div><div class="col-md-1 column">
-                            <h5>
-                                版本:
-                            </h5>
-                            <h5>
-                                最后更新:
-                            </h5>
-                        </div>
-                            <div class="col-md-2 column" style="margin:0;padding:0;display: inline-block;vertical-align: middle;">
-                                <h5 >
-                                    1.0.2
-                                </h5>
-                                <h5 >
-                                    2019-06-07
-                                </h5>
-                            </div><div class="col-md-1 column">
-                            <h5>
-                                状态:
-                            </h5>
-                            <h5>
-                                到期日:
-                            </h5>
-                        </div>
-                            <div class="col-md-2 column" style="margin:0;padding:0;display: inline-block;vertical-align: middle;">
-                                <h5 >
-                                    开始
-                                </h5>
-                                <h5 >
-                                    2019-05-05
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="row clearfix">
-                            <div class="col-md-12 column">
-                                <hr style="margin-top: 10px; margin-bottom: 10px"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row clearfix">
-                    <div class="col-md-12 column">
-                        <div class="row clearfix">
-                            <div class="col-md-10 column">
-                                <h3>
-                                    DK-4 换一个新logo
-                                </h3>
-                            </div>
-                            <div class="col-md-2 column">
-                                <br/>
-                                <a class="btn btn btn-outline btn-info btn-block" href="/user/projectInfo?projectId=${p.projectId}">
-                                    查看更多&nbsp;<span class="glyphicon glyphicon-chevron-right"></span>
-                                    <%--&nbsp;&nbsp;&nbsp;»--%>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="row clearfix">
-                            <div class="col-md-9 column">
-                                <span class="label label-primary">DK</span>
-                                <span class="label label-primary">Java</span>
-                                <span class="label label-primary">develop</span>
-                            </div>
-                        </div>
-                        <div class="row clearfix">
-                            <div class="col-md-1 column">
-                                <h5>
-                                    创建人:
-                                </h5>
-                                <h5>
-                                    优先级:
-                                </h5>
-                            </div>
-                            <div class="col-md-2 column" style="margin:0;padding:0;display: inline-block;vertical-align: middle;">
-                                <h5 >
-                                    xiaoming
-                                </h5>
-                                <h5 >
-                                    低
-                                </h5>
-                            </div>
-                            <div class="col-md-1 column">
-                                <h5>
-                                    任务类型:
-                                </h5>
-                                <h5>
-                                    创建时间:
-                                </h5>
-                            </div>
-                            <div class="col-md-2 column" style="margin:0;padding:0;display: inline-block;vertical-align: middle;">
-                                <h5 >
-                                    需求
-                                </h5>
-                                <h5 >
-                                    2019-04-01
-                                </h5>
-                            </div><div class="col-md-1 column">
-                            <h5>
-                                版本:
-                            </h5>
-                            <h5>
-                                最后更新:
-                            </h5>
-                        </div>
-                            <div class="col-md-2 column" style="margin:0;padding:0;display: inline-block;vertical-align: middle;">
-                                <h5 >
-                                    1.0.1
-                                </h5>
-                                <h5 >
-                                    2019-06-07
-                                </h5>
-                            </div><div class="col-md-1 column">
-                            <h5>
-                                状态:
-                            </h5>
-                            <h5>
-                                到期日:
-                            </h5>
-                        </div>
-                            <div class="col-md-2 column" style="margin:0;padding:0;display: inline-block;vertical-align: middle;">
-                                <h5 >
-                                    开始
-                                </h5>
-                                <h5 >
-                                    2019-05-05
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="row clearfix">
-                            <div class="col-md-12 column">
-                                <hr style="margin-top: 10px; margin-bottom: 10px"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+</c:forEach>
 
 
 
+    <!-- 分页信息 -->
     <div class="row clearfix">
-        <div class="col-md-12 column">
-            <ul class="pagination">
-                <li>
-                    <a href="#">首页</a>
-                </li>
-                <li>
-                    <a href="#">1</a>
-                </li>
-                <li>
-                    <a href="#">2</a>
-                </li>
-                <li>
-                    <a href="#">3</a>
-                </li>
-                <li>
-                    <a href="#">4</a>
-                </li>
-                <li>
-                    <a href="#">5</a>
-                </li>
-                <li>
-                    <a href="#">下一页</a>
-                </li>
-            </ul>
+        <!-- 分页条 -->
+        <div class="col-md-12">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li><a href="${path}/user/SearchTask?pn=1">首页</a></li>
+                    <c:if test="${taskList.hasPreviousPage }">
+                        <li>
+                            <a href="${path}/user/SearchTask?pn=${taskList.pageNum-1}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    </c:if>
+
+                    <c:forEach items="${taskList.navigatepageNums }" var="page_Num">
+                        <c:if test="${page_Num == taskList.pageNum }">
+                            <li class="active"><a href="#">${ page_Num}</a></li>
+                        </c:if>
+                        <c:if test="${page_Num != taskList.pageNum }">
+                            <li><a href="${path}/user/SearchTask?pn=${ page_Num}">${ page_Num}</a></li>
+                        </c:if>
+                    </c:forEach>
+                    <c:if test="${taskList.hasNextPage }">
+                        <li>
+                            <a href="${path}/user/SearchTask?pn=${taskList.pageNum+1}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </c:if>
+                    <li><a href="${path}/user/SearchTask?pn=${taskList.pages}">末页</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>
+
+<script src="/frame/layDate-v5.0.9/laydate/laydate.js"></script>
+<script>
+    //日期选择控件
+    laydate.render({
+        elem: '#taskStartFromDate' //指定元素
+        ,type: 'datetime'
+    });
+    laydate.render({
+        elem: '#taskStartToDate'
+        ,type: 'datetime'
+    });
+    laydate.render({
+        elem: '#taskEndFromDate'
+        ,type: 'datetime'
+    });
+    laydate.render({
+        elem: '#taskEndToDate'
+        ,type: 'datetime'
+    });
+</script>
+
 <jsp:include page="../Footer.jsp"/>

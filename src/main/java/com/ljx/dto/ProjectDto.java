@@ -20,6 +20,7 @@ public class ProjectDto {
     private List<LabelDto> taskLabelList; // 该项目的任务标签
     private String projectLabelString = ""; // 项目标签字符串
     private String taskLabelString = "";  // 任务标签字符串
+    private Integer userUnfinishNum; // 当前用户未完成任务数
 
 
     public String getProjectName() {
@@ -162,5 +163,13 @@ public class ProjectDto {
 
     public void setTaskLabelString(String taskLabelString) {
         this.taskLabelString = taskLabelString;
+    }
+
+    public Integer getUserUnfinishNum() {
+        return userUnfinishNum;
+    }
+
+    public void setUserUnfinishNum(Integer userUnfinishNum) {
+        this.userUnfinishNum = userUnfinishNum;
     }
 }

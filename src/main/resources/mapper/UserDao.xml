@@ -20,11 +20,87 @@
 	
  	</insert>
 
+	<select id="listProjectUser" resultType="com.ljx.dto.UserDto">
+		select u.userName,
+			   u.userId
+		from users u
+			join projectInfos pI on u.userId = pI.projectInfoUserId
+		where pI.projectInfoProjectId = #{projectId}
+		and pI.projectInfoType != "申请中"
+	</select>
+
 	<select id="findTaskGraphData" resultType="com.ljx.dto.HomeTaskGraphDto">
 		select count(case when t.taskFinishDate&lt;=#{finishDate} then 1 else null end) taskFinishNum,
-		count(case when t.taskFinishDate&lt;=#{finishDate} then null else 1 end) taskUnfinishNum
+		count(case when t.taskFinishDate&lt;=#{finishDate} then null else 1 end) taskUnfinishNum,
+		DATE_FORMAT(#{finishDate},'%Y-%m-%d') taskDate,
+		#{projectId} projectId
 		from tasks t
 		where t.taskProjectId=#{projectId}
+		and t.taskStartDate&lt;=#{finishDate}
 	</select>
-	
+
+	<update id="updatePwd" parameterType="com.ljx.dto.UserDto">
+		update users
+		set userPwd=#{userPwd}
+		where userId=#{userId}
+	</update>
+
+	<select id="listUserMessage" resultType="com.ljx.dto.UserMessage">
+		select pi.projectInfoUserId userId,
+		   pi.projectInfoProjectId projectId,
+		   pi.projectInfoRemark,
+		   u.userName,
+		   p.projectName
+		from projectInfos pi
+       		join users u on pi.projectInfoUserId = u.userId
+       		join projects p on pi.projectInfoProjectId = p.projectId
+		where projectInfoType="申请中"
+  			and pi.projectInfoProjectId in (
+				select pp.projectInfoProjectId
+				from projectInfos pp
+				where pp.projectInfoUserId=#{userId}
+				and pp.projectInfoType="创建人"
+		)
+	</select>
+
+	<delete id="deleteProjectInfo">
+		delete
+		from projectInfos
+		where projectInfoProjectId=#{projectId}
+		and projectInfoUserId=#{userId}
+	</delete>
+
+	<update id="updateProjectInfo">
+		update projectInfos
+		set projectInfoType=#{type}
+		where projectInfoProjectId=#{projectId}
+		and projectInfoUserId=#{userId}
+	</update>
+
+	<select id="searchDountData" resultType="com.ljx.dto.DountDto">
+		select u.userName,
+			count(u.userName) taskNum
+		from taskInfos t
+			join projectInfos p on p.projectInfoUserId=t.taskInfoUserId
+			join users u on p.projectInfoUserId = u.userId
+		where p.projectInfoProjectId=#{projectId}
+		group by t.taskInfoUserId
+	</select>
+
+	<select id="searchUnfinishTaskNum" parameterType="com.ljx.dto.ProjectDto" resultType="integer">
+		select count(*)
+		from tasks
+		where taskId in (
+		  select t.taskId
+		  from tasks t
+			left join projects p on t.taskProjectId = p.projectId
+			left join taskInfos tI on t.taskId = tI.taskInfoTaskId
+		  where t.taskProjectId=#{projectId}
+			and tI.taskInfoUserId=#{loginUserId}
+			and t.taskState!="完成"
+			and t.taskState!="关闭"
+		  group by tI.taskInfoTaskId
+		  )
+	</select>
+
 </mapper>	

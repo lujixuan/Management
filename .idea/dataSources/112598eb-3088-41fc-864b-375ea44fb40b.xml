@@ -936,7 +936,7 @@
     <table id="236" parent="3" name="subtasks">
       <Collation>utf8_general_ci</Collation>
     </table>
-    <table id="237" parent="3" name="tableChanges">
+    <table id="237" parent="3" name="taskChanges">
       <Collation>utf8_general_ci</Collation>
     </table>
     <table id="238" parent="3" name="taskInfos">
@@ -951,7 +951,6 @@
     <column id="241" parent="231" name="labelInfoLabelId">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="242" parent="231" name="labelInfoTaskId">
@@ -962,8 +961,7 @@
     </column>
     <key id="243" parent="231" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>labelInfoLabelId
-labelInfoTaskId</ColNames>
+      <ColNames>labelInfoTaskId</ColNames>
       <Primary>1</Primary>
     </key>
     <column id="244" parent="232" name="labelId">
@@ -1177,64 +1175,64 @@ labelInfoTaskId</ColNames>
       <RefTableName>tasks</RefTableName>
       <RefColNames>taskId</RefColNames>
     </foreign-key>
-    <column id="285" parent="237" name="tableChangeId">
+    <column id="285" parent="237" name="taskChangeId">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="286" parent="237" name="tableChangeTaskId">
+    <column id="286" parent="237" name="taskChangeTaskId">
       <Position>2</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="237" name="tableChangeUserId">
+    <column id="287" parent="237" name="taskChangeUserId">
       <Position>3</Position>
       <DataType>varchar(50)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="237" name="tableChangeDate">
+    <column id="288" parent="237" name="taskChangeDate">
       <Position>4</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="237" name="tableChangeOldValue">
+    <column id="289" parent="237" name="taskChangeOldValue">
       <Position>5</Position>
       <DataType>varchar(1000)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="290" parent="237" name="tableChangeNewValue">
+    <column id="290" parent="237" name="taskChangeNewValue">
       <Position>6</Position>
       <DataType>varchar(1000)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="291" parent="237" name="tableChangePlace">
+    <column id="291" parent="237" name="taskChangePlace">
       <Position>7</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="292" parent="237" name="tableChangeTaskId">
-      <ColNames>tableChangeTaskId</ColNames>
+    <index id="292" parent="237" name="taskChangeTaskId">
+      <ColNames>taskChangeTaskId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="293" parent="237" name="tableChangeUserId">
-      <ColNames>tableChangeUserId</ColNames>
+    <index id="293" parent="237" name="taskChangeUserId">
+      <ColNames>taskChangeUserId</ColNames>
       <Type>btree</Type>
     </index>
     <key id="294" parent="237" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>tableChangeId</ColNames>
+      <ColNames>taskChangeId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="295" parent="237" name="tableChanges_ibfk_1">
-      <ColNames>tableChangeTaskId</ColNames>
+    <foreign-key id="295" parent="237" name="taskChanges_ibfk_1">
+      <ColNames>taskChangeTaskId</ColNames>
       <RefSchemaName>management</RefSchemaName>
       <RefTableName>tasks</RefTableName>
       <RefColNames>taskId</RefColNames>
     </foreign-key>
-    <foreign-key id="296" parent="237" name="tableChanges_ibfk_2">
-      <ColNames>tableChangeUserId</ColNames>
+    <foreign-key id="296" parent="237" name="taskChanges_ibfk_2">
+      <ColNames>taskChangeUserId</ColNames>
       <RefSchemaName>management</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>userId</RefColNames>
@@ -1291,12 +1289,12 @@ labelInfoTaskId</ColNames>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="307" parent="239" name="taskFromDate">
+    <column id="307" parent="239" name="taskStartDate">
       <Position>4</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="308" parent="239" name="taskToDate">
+    <column id="308" parent="239" name="taskEndDate">
       <Position>5</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
@@ -1311,7 +1309,7 @@ labelInfoTaskId</ColNames>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="311" parent="239" name="taskTheme">
+    <column id="311" parent="239" name="taskName">
       <Position>8</Position>
       <DataType>varchar(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
@@ -1336,45 +1334,60 @@ labelInfoTaskId</ColNames>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="316" parent="239" name="taskProjectId">
+    <column id="316" parent="239" name="taskCreateUser">
+      <Position>13</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="317" parent="239" name="taskTestUser">
+      <Position>14</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="318" parent="239" name="taskFinishUser">
+      <Position>15</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="319" parent="239" name="taskProjectId">
       <ColNames>taskProjectId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="317" parent="239" name="PRIMARY">
+    <key id="320" parent="239" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>taskId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="318" parent="239" name="tasks_ibfk_1">
+    <foreign-key id="321" parent="239" name="tasks_ibfk_1">
       <ColNames>taskProjectId</ColNames>
       <RefSchemaName>management</RefSchemaName>
       <RefTableName>projects</RefTableName>
       <RefColNames>projectId</RefColNames>
     </foreign-key>
-    <column id="319" parent="240" name="userId">
+    <column id="322" parent="240" name="userId">
       <Position>1</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="320" parent="240" name="userPwd">
+    <column id="323" parent="240" name="userPwd">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="321" parent="240" name="userName">
+    <column id="324" parent="240" name="userName">
       <Position>3</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="322" parent="240" name="userEmail">
+    <column id="325" parent="240" name="userEmail">
       <Position>4</Position>
       <DataType>varchar(50)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="323" parent="240" name="PRIMARY">
+    <key id="326" parent="240" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userId</ColNames>
       <Primary>1</Primary>
